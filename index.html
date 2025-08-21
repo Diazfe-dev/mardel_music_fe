@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Vite App</title>
+</head>
+<body class="flex flex-col w-full h-screen body-gradient">
+<nav class="flex flex-row p-10 bg-transparent h-20">
+    <div class="grow justify-start">
+        <a href="./index.html" class="text-2xl font-bold">
+            MardelMusic
+        </a>
+    </div>
+    <div class="grow">
+        <ul class="flex flex-row justify-center gap-4">
+            <li>
+                <a class="link">Cartelera</a>
+            </li>
+            <li>
+                <a class="link">Artistas</a>
+            </li>
+        </ul>
+    </div>
+    <div class="grow">
+        <ul class="flex flex-row justify-end gap-4">
+            <li><a class="link" href="./login.html">Inicar sesión</a></li>
+            <li><a class="link" href="register.html">Registrarme</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="mt-8 w-full h-auto">
+    <div class="flex flex-col text-center justify-center items-center gap-4">
+        <h1 class="text-4xl font-regular leading-tight">
+            Tu cartelera de eventos <b>online</b>
+        </h1>
+    </div>
+</section>
+<section class="grid grid-cols-12 gap-8 p-8 ">
+    <div class="col-span-12">
+        <div>
+            <h3 class="text-2xl font-medium mb-4"> Proximos eventos</h3>
+        </div>
+        <div id="events-grid" class="grid grid-cols-12 grid-rows-12 gap-4 h-[600px]">
+        </div>
+    </div>
+</section>
+
+<section class="grid grid-cols-12 gap-8 p-8 ">
+    <div class="col-span-12">
+        <h3 class="text-2xl font-medium mb-4"> Descubri artistas</h3>
+    </div>
+    <div id="artists-slider" class="col-span-12 flex flex-row gap-4">
+    </div>
+</section>
+
+<script>
+    const eventsGrid = document.getElementById("events-grid");
+    const events = [
+        {
+            uri: "public/placeholder-image.jpeg",
+            title: "Festival de Rock",
+            location: "Estadio Único",
+            date: "20/12/2023 - 18:00hs"
+        },
+        {
+            uri: "public/placeholder-image.jpeg",
+            title: "Festival de Rock",
+            location: "Estadio Único",
+            date: "20/12/2023 - 18:00hs"
+        },
+        {
+            uri: "public/placeholder-image.jpeg",
+            title: "Festival de Rock",
+            location: "Estadio Único",
+            date: "20/12/2023 - 18:00hs"
+        },
+        {
+            uri: "public/placeholder-image.jpeg",
+            title: "Festival de Rock",
+            location: "Estadio Único",
+            date: "20/12/2023 - 18:00hs"
+        },
+        {
+            uri: "public/placeholder-image.jpeg",
+            title: "Festival de Rock",
+            location: "Estadio Único",
+            date: "20/12/2023 - 18:00hs"
+        },
+        {
+            uri: "public/placeholder-image.jpeg",
+            title: "Festival de Rock",
+            location: "Estadio Único",
+            date: "20/12/2023 - 18:00hs"
+        },
+        {
+            uri: "public/placeholder-image.jpeg",
+            title: "Festival de Rock",
+            location: "Estadio Único",
+            date: "20/12/2023 - 18:00hs"
+        },
+        {
+            uri: "public/placeholder-image.jpeg",
+            title: "Festival de Rock",
+            location: "Estadio Único",
+            date: "20/12/2023 - 18:00hs"
+        },
+        {
+            uri: "public/placeholder-image.jpeg",
+            title: "Festival de Rock",
+            location: "Estadio Único",
+            date: "20/12/2023 - 18:00hs"
+        }
+    ]
+    if (eventsGrid && events.length > 0) {
+        eventsGrid.innerHTML = '';
+
+        events.forEach((event, index) => {
+            const eventNode = document.createElement("div");
+
+            if (index === 0) {
+                eventNode.className = "col-span-6 row-span-12 overflow-hidden rounded-lg border border-transparent rounded overflow-hidden relative";
+
+                const highlightedEvent = document.createElement("div");
+                highlightedEvent.className = "absolute top-0 left-0 bg-black opacity-80 border rounded-br-md border-transparent p-2 m-0";
+                const highlightedEventTitle = document.createElement("h3");
+                highlightedEventTitle.className = "text-xs";
+                highlightedEventTitle.textContent = "Evento destacado";
+                highlightedEvent.appendChild(highlightedEventTitle);
+                eventNode.appendChild(highlightedEvent);
+
+                const eventImage = document.createElement("img");
+                eventImage.src = event.uri;
+                eventImage.alt = "Imagen grande";
+                eventImage.className = "w-full h-full object-cover transition-all duration-300";
+
+                const eventInfo = document.createElement("div");
+                eventInfo.className = "absolute bottom-0 left-0 right-0 bg-black opacity-80 text-white p-3 transform group-hover:translate-y-0 transition-transform duration-300 flex flex-col";
+
+                const eventTitle = document.createElement("h3");
+                eventTitle.className = "text-lg font-bold";
+                eventTitle.textContent = event.title;
+
+                const eventLocationSpan1 = document.createElement("span");
+                eventLocationSpan1.textContent = "Ubicación:";
+                const eventLocationSpan2 = document.createElement("span");
+                eventLocationSpan2.textContent = event.location;
+
+                const eventDateSpan1 = document.createElement("span");
+                eventDateSpan1.textContent = "Fecha:";
+                const eventDateSpan2 = document.createElement("span");
+                eventDateSpan2.textContent = event.date;
+
+                eventInfo.appendChild(eventTitle);
+                eventInfo.appendChild(eventLocationSpan1);
+                eventInfo.appendChild(eventLocationSpan2);
+                eventInfo.appendChild(eventDateSpan1);
+                eventInfo.appendChild(eventDateSpan2);
+
+                eventNode.appendChild(eventImage);
+                eventNode.appendChild(eventInfo);
+            } else {
+                // Eventos pequeños - determina col-span según tu estructura
+                let colSpan;
+                if (index >= 1 && index <= 2) {
+                    colSpan = 3;
+                } else {
+                    colSpan = 2;
+                }
+
+                eventNode.className = `col-span-${colSpan} row-span-4 overflow-hidden rounded-lg border border-transparent relative group`;
+
+                const eventImage = document.createElement("img");
+                eventImage.src = event.uri;
+                eventImage.alt = "Imagen pequeña 2";
+                eventImage.className = "w-full h-full object-cover hover:blur-sm transition-all duration-300";
+
+                const eventInfo = document.createElement("div");
+                eventInfo.className = "absolute bottom-0 left-0 right-0 bg-black opacity-80 text-white p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300";
+
+                const eventTitle = document.createElement("h3");
+                eventTitle.className = "text-lg font-bold";
+                eventTitle.textContent = event.title;
+
+                const eventLocation = document.createElement("div");
+                eventLocation.innerHTML = `<span>Ubicación:</span> <span>${event.location}</span>`;
+
+                const eventDate = document.createElement("div");
+                eventDate.innerHTML = `<span>Fecha:</span> <span>${event.date}</span>`;
+
+                eventInfo.appendChild(eventTitle);
+                eventInfo.appendChild(eventLocation);
+                eventInfo.appendChild(eventDate);
+
+                eventNode.appendChild(eventImage);
+                eventNode.appendChild(eventInfo);
+            }
+
+            eventsGrid.appendChild(eventNode);
+        });
+    }
+    const artistsSlider = document.getElementById("artists-slider");
+    const artists = [
+        {
+            uri: "public/placeholder-image.jpeg",
+            name: "Artista 1",
+            description: "Descripción del artista 1"
+        },
+        {
+            uri: "public/placeholder-image.jpeg",
+            name: "Artista 1",
+            description: "Descripción del artista 1"
+        },
+        {
+            uri: "public/placeholder-image.jpeg",
+            name: "Artista 1",
+            description: "Descripción del artista 1"
+        },
+        {
+            uri: "public/placeholder-image.jpeg",
+            name: "Artista 1",
+            description: "Descripción del artista 1"
+        },
+        {
+            uri: "public/placeholder-image.jpeg",
+            name: "Artista 1",
+            description: "Descripción del artista 1"
+        },
+    ]
+    if(artistsSlider && artists.length > 0) {
+        artists.forEach((artist) => {
+            const artistNode = document.createElement("div");
+            artistNode.className = "w-64 h-64 bg-gray-200 rounded-lg overflow-hidden shadow-lg flex flex-col items-center justify-center";
+
+            const artistImage = document.createElement("img");
+            artistImage.src = artist.uri;
+            artistImage.alt = "Imagen del artista";
+            artistImage.className = "w-full h-40 object-cover";
+
+            const artistName = document.createElement("h4");
+            artistName.className = "text-xl font-bold mt-2";
+            artistName.textContent = artist.name;
+
+            const artistDescription = document.createElement("p");
+            artistDescription.className = "text-sm text-gray-600 mt-1";
+            artistDescription.textContent = artist.description;
+
+            artistNode.appendChild(artistImage);
+            artistNode.appendChild(artistName);
+            artistNode.appendChild(artistDescription);
+
+            artistsSlider.appendChild(artistNode);
+        });
+    }
+</script>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

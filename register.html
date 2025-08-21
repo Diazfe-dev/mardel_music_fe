@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Registro - MardelMusic</title>
+</head>
+<body class="flex flex-col md:w-full h-screen md:overflow-hidden md:bg-[#242424] body-gradient">
+<nav class="flex flex-row p-8 bg-transparent h-20">
+    <div class="grow justify-start">
+        <a href="./index.html" class="text-2xl font-bold">
+            MardelMusic
+        </a>
+    </div>
+</nav>
+
+<section class="bg-[#242424] backdrop:blur-2xl md:p-0 md:m-12 h-full grid grid-cols-1 md:grid-cols-4 border border-transparent md:rounded-2xl">
+    <div class="hidden md:flex md:col-span-2 flex-col justify-center items-center content-center">
+        <h2 class="text-white text-3xl font-bold mb-4">Únete a nuestra comunidad</h2>
+        <p class="text-gray-300 text-lg leading-relaxed">
+            Crea tu cuenta y accede a todas las funcionalidades de nuestra plataforma.
+        </p>
+    </div>
+    <div class="col-span-1 md:col-span-2 flex flex-col justify-center items-center content-center">
+        <div>
+            <h2 class="font-regular text-2xl leading-tight">
+                Crear tu cuenta
+            </h2>
+        </div>
+        <div class="mt-4 w-full max-w-[400px] px-4 md:px-0 flex flex-col gap-3">
+            <button class="w-full bg-white rounded-4xl text-black text-md py-2 px-4 flex flex-row justify-center items-center content-center gap-2 hover:opacity-90">
+                <div class="w-5 h-h">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"
+                         xmlns:xlink="http://www.w3.org/1999/xlink" style="display: block;">
+                        <path fill="#EA4335"
+                              d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+                        <path fill="#4285F4"
+                              d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+                        <path fill="#FBBC05"
+                              d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+                        <path fill="#34A853"
+                              d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+                        <path fill="none" d="M0 0h48v48H0z"></path>
+                    </svg>
+                </div>
+                <span>Registrarse con Google</span>
+            </button>
+
+            <button id="show-credentials-form" class="w-full bg-gray-700 rounded-4xl text-white text-md py-2 px-4 flex flex-row justify-center items-center content-center gap-2 hover:bg-gray-600 transition-colors">
+                <div class="w-5 h-5">
+                    <i data-lucide="mail"></i>
+                </div>
+                <span>Registrarse con email</span>
+            </button>
+        </div>
+        <form id="credentials-form" class="w-full max-w-[400px] mt-8 px-4 md:px-0 hidden">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="font-regular text-lg leading-tight">
+                    Datos personales
+                </h2>
+                <button type="button" id="hide-credentials-form" class="text-gray-400 hover:text-white transition-colors">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+
+            <div class="flex flex-col w-full h-auto gap-4">
+                <div class="input-container">
+                    <label>Nombre</label>
+                    <input id="name" type="text" required
+                           class="p-2 border border-gray-700 rounded bg-gray-800 text-white text-base focus:border-white focus:outline-none w-full shadow-md">
+                </div>
+                <div class="input-container">
+                    <label>Apellido</label>
+                    <input id="lastName" type="text" required
+                           class="p-2 border border-gray-700 rounded bg-gray-800 text-white text-base focus:border-white focus:outline-none w-full shadow-md">
+                </div>
+                <div class="input-container">
+                    <label>Email</label>
+                    <input id="email" type="email" required
+                           class="p-2 border border-gray-700 rounded bg-gray-800 text-white text-base focus:border-white focus:outline-none w-full shadow-md">
+                </div>
+                <div class="input-container flex flex-col">
+                    <label class="text-sm font-medium text-white mb-1">Contraseña</label>
+                    <div class="relative flex items-center">
+                        <input type="password" id="password"
+                               class="p-2 border border-gray-700 rounded bg-gray-800 text-white text-base focus:border-white focus:outline-none w-full shadow-md"/>
+                        <button type="button" class="absolute right-3 cursor-pointer" id="toggle-password">
+                            <i data-lucide="eye-off"></i>
+                        </button>
+                    </div>
+                    <div class="text-xs text-gray-400 mt-1">Mínimo 8 caracteres, incluye mayúscula, minúscula y número</div>
+                </div>
+                <button class="bg-white rounded-4xl text-black text-md py-2 px-4 flex flex-row justify-center items-center content-center gap-2 hover:opacity-90"
+                        type="submit">
+                    <span class="text-sm font-semibold">Crear cuenta</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script type="module" src="/src/main.js"></script>
+<script type="module">
+    import RegisterHandler from "/src/handlers/register.handler.js";
+
+    // Elementos para mostrar/ocultar formulario
+    const showFormBtn = document.getElementById("show-credentials-form");
+    const hideFormBtn = document.getElementById("hide-credentials-form");
+    const credentialsForm = document.getElementById("credentials-form");
+
+    // Toggle password
+    const toggleBtn = document.getElementById("toggle-password");
+    const passwordInput = document.getElementById("password");
+    let show = false;
+
+    // Mostrar formulario
+    showFormBtn.addEventListener("click", () => {
+        credentialsForm.classList.remove("hidden");
+        showFormBtn.style.display = "none";
+
+        // Scroll suave hacia el formulario
+        setTimeout(() => {
+            credentialsForm.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }, 100);
+
+        if (window.refreshIcons) {
+            window.refreshIcons();
+        }
+    });
+
+    // Ocultar formulario
+    hideFormBtn.addEventListener("click", () => {
+        credentialsForm.classList.add("hidden");
+        showFormBtn.style.display = "flex";
+
+        // Limpiar campos del formulario
+        credentialsForm.reset();
+
+        // Scroll hacia los botones
+        setTimeout(() => {
+            showFormBtn.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }, 100);
+    });
+
+    // Toggle password visibility
+    toggleBtn.addEventListener("click", () => {
+        show = !show;
+        toggleBtn.innerHTML = show
+            ? '<i data-lucide="eye"></i>'
+            : '<i data-lucide="eye-off"></i>';
+        passwordInput.type = show ? "text" : "password";
+        passwordInput.focus();
+        if (window.refreshIcons) {
+            window.refreshIcons();
+        }
+    });
+
+    new RegisterHandler();
+</script>
+</body>
+</html>
