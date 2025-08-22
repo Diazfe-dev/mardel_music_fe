@@ -10,7 +10,7 @@ class AuthService {
     }
 
     async logout() {
-        return await httpAdapter.post('/auth/logout');
+        return await httpAdapter.get('/auth/logout');
     }
 
     async refreshToken() {

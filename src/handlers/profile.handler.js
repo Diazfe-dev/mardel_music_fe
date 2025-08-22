@@ -67,15 +67,9 @@ class ProfileHandler {
         return await this.__getUserProfile();
     }
 
-    isAuthenticated() {
-        return this.user !== null;
-    }
 
-    async clearUser() {
-        this.user = null;
-        this.isLoading = false;
-        this.userPromise = null;
-    }
+
+
 
     async logout() {
 

@@ -1,4 +1,3 @@
-// src/handlers/register.handler.js
 import authService from '../services/auth.service.js';
 
 class RegisterHandler {

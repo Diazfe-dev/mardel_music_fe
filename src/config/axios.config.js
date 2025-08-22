@@ -1,5 +1,7 @@
 import axios from 'axios';
 import {BASE_API_URL} from '../constants/index.js'
+import {showNotification} from "../utils/toaster.js";
+import AuthGuard from "../utils/auth.guard.js";
 
 const axiosInstance = axios.create({
     baseURL: BASE_API_URL,
@@ -21,25 +23,17 @@ axiosInstance.interceptors.request.use(
 );
 
 axiosInstance.interceptors.response.use(
-    (response) => {
-        return response;
-    },
-    (error) => {
-        if (error.response && error.response.status === 500) {
-            const notification = document.createElement('div');
-            notification.className = `fixed top-4 right-4 p-4 rounded-lg z-50 text-white shadow-lg opacity-80 border-1 bg-red-900 border-red-300`;
-            notification.textContent = "Hubo un error, comunicate con un administrador";
-
-            document.body.appendChild(notification);
-
-            setTimeout(() => {
-                notification.remove();
-            }, 5000);
-
-        } else {
-            return Promise.reject(error);
+    (response) => response,
+    async (error) => {
+        if (error.response) {
+            if (error.response.status === 500) {
+                showNotification("Hubo un error, comunicate con un administrador", "error");
+            } else if (error.response.status === 401) {
+                showNotification("No autorizado, por favor inicia sesión nuevamente", "error");
+                AuthGuard(null);
+            }
         }
-
+        return Promise.reject(error);
     }
 );
 

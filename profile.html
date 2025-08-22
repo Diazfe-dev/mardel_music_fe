@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dashboard - MardelMusic</title>
+</head>
+<body class="flex flex-col md:w-full h-screen md:overflow-hidden md:bg-[#242424]">
+<nav class="flex flex-row p-8 bg-transparent h-20">
+    <div class="grow justify-start">
+        <a href="./index.html" class="text-2xl font-bold">
+            MardelMusic
+        </a>
+    </div>
+
+    <div class="grow-3 flex justify-center ">
+        <div class="w-100 input-container">
+            <div class="relative flex items-center">
+                <input type="text" id="search-input" placeholder="Buscar eventos"
+                       class="p-2 border border-gray-700 rounded bg-gray-800 text-white text-base focus:border-white focus:outline-none w-full shadow-md"/>
+                <button type="button" class="absolute right-3" id="search-btn">
+                    <i id="search-input-icon" data-lucide="Search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="grow-1 relative flex justify-end">
+        <div class="relative">
+            <button id="profile-img"
+                    class="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer">
+            </button>
+
+            <ul id="profile-dropdown"
+                class="hidden absolute top-0 right-0 mt-12 md:w-50 md:h-auto bg-white text-black rounded shadow-lg flex flex-col gap-2">
+                <li class="p-2 hover:bg-[#333333] hover:opacity-80 hover:text-white transition-all cursor-pointer">
+                <span class="text-sm font-medium">
+                    Mi perfil
+                </span>
+                </li>
+                <li class="p-2 hover:bg-[#333333] hover:opacity-80 hover:text-white transition-all cursor-pointer">
+                <span class="text-sm font-medium">
+                    Configuración
+                </span>
+                </li>
+
+                <li id="logout-btn"
+                    class="p-2 hover:bg-[#333333] hover:opacity-80 hover:text-white transition-all cursor-pointer">
+                <span class="text-sm font-medium">
+                    Cerrar sesión
+                </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section
+        class=" bg-[#242424] backdrop:blur-2xl md:p-0  h-full grid grid-cols-1 md:grid-cols-4 border border-transparent">
+</section>
+
+<script type="module" src="/src/main.js"></script>
+<script type="module">
+    import DashboardHandler from '/src/handlers/dashboard-handler.js'
+    const dashboardHandler = new DashboardHandler();
+</script>
+
+<script type="module">
+    import ProfileHandler from '/src/handlers/profile.handler.js';
+
+
+</script>
+</body>
+</html>

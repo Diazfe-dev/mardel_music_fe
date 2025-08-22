@@ -95,8 +95,6 @@ class LoginHandler {
         showNotification(message, 'error');
     }
 
-
-
     showFieldError(field, message) {
         field.classList.add('border-red-500');
         const errorDiv = document.createElement('div');
