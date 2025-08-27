@@ -5,60 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Dashboard - MardelMusic</title>
 </head>
-<body class="flex flex-col md:w-full h-screen md:overflow-hidden md:bg-[#242424]">
-<nav class="flex flex-row p-8 bg-transparent h-20">
+<body class="flex flex-col h-screen md:w-full xl:h-screen  bg-light">
+<nav class="flex flex-row items-center p-8 h-20">
     <div class="grow justify-start">
-        <a href="./index.html" class="text-2xl font-bold">
+        <a href="./dashboard.html" class="text-2xl font-bold text-black">
             MardelMusic
         </a>
     </div>
-    <div class="grow-1 relative flex justify-end">
+    <div class="grow-1 relative flex justify-end gap-8">
+        <div class="relative">
+            <button id="notification-bell"
+                    class="text-[#fefefe] bg-[#333333] opacity-50  rounded-full hover:opacity-100 w-10 h-10 transition flex items-center justify-center cursor-pointer">
+                <i data-lucide="bell"></i>
+            </button>
+            <div id="notification-badge"
+                 class="hidden absolute -top-1 -right-1 rounded-full bg-red-500 min-w-[20px] h-5 flex items-center justify-center text-white text-xs font-bold px-1">
+            </div>
+            <ul id="notification-dropdown"
+                class="hidden absolute top-0 right-0 overflow-hidden mt-12 w-80 max-h-96 bg-white text-black rounded-lg shadow-xl border border-gray-200 flex flex-col z-50">
+            </ul>
+        </div>
         <div class="relative">
             <button id="profile-img"
-                    class="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer">
+                    class="w-10 h-10 bg-dark rounded-full flex items-center justify-center cursor-pointer">
             </button>
 
             <ul id="profile-dropdown"
-                class="hidden absolute top-0 right-0 mt-12 md:w-50 md:h-auto bg-white text-black rounded shadow-lg flex flex-col gap-2">
-                <li class="p-2 hover:bg-[#333333] hover:opacity-80 hover:text-white transition-all cursor-pointer">
-                <span class="text-sm font-medium">
-                    Mi perfil
-                </span>
-                </li>
-                <li class="p-2 hover:bg-[#333333] hover:opacity-80 hover:text-white transition-all cursor-pointer">
-                <span class="text-sm font-medium">
-                    Configuración
-                </span>
-                </li>
-
-                <li id="logout-btn"
-                    class="p-2 hover:bg-[#333333] hover:opacity-80 hover:text-white transition-all cursor-pointer">
-                <span class="text-sm font-medium">
-                    Cerrar sesión
-                </span>
-                </li>
+                class="hidden overflow-hidden absolute top-0 right-0 mt-12 md:w-50 md:h-auto bg-white text-black rounded-lg shadow-lg flex flex-col gap-2 z-50">
             </ul>
         </div>
     </div>
 </nav>
 
-<section
-        class=" bg-[#242424] backdrop:blur-2xl md:p-0  h-full grid grid-cols-1 md:grid-cols-4 border border-transparent">
-</section>
+<section class="w-full min-h-screen md:p-8">
 
+</section>
 <script type="module" src="/src/main.js"></script>
 <script type="module">
-    import authHandler from "./src/handlers/auth.handler.js";
-    import DashboardHandler from "./src/handlers/dashboard-handler.js";
-    import AuthGuard from "./src/utils/auth.guard.js";
-    
-    const dashboardHandler = new DashboardHandler();
-    authHandler.subscribe(AuthGuard)
-    authHandler.subscribe(dashboardHandler.setupDashboard);
-    authHandler.subscribe(dashboardHandler.checkIfUserHasProfileCreated)
+    import authHandler from "/src/handlers/auth.handler.js";
+    import LayoutHandler from "/src/handlers/layout-handler.js";
+    import NotificationHandler from "/src/handlers/notification.handler.js";
+    import AuthGuard from "/src/utils/auth.guard.js";
+
+    const layoutHandler = new LayoutHandler();
+    const notificationHandler = new NotificationHandler();
+
+    authHandler.subscribe(AuthGuard);
+    authHandler.subscribe(layoutHandler.setupLayout);
+    authHandler.subscribe(() => {
+        setTimeout(() => notificationHandler.init(), 100);
+    });
 
     const logoutBtn = document.getElementById('logout-btn');
-    if(logoutBtn){
+    if (logoutBtn) {
         logoutBtn.addEventListener('click', async () => {
             await authHandler.logout();
         });

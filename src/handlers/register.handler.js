@@ -1,39 +1,42 @@
 import authService from '../services/auth.service.js';
+import {showNotification} from '../utils/toaster.js';
 
 class RegisterHandler {
     constructor() {
         this.form = null;
         this.nameInput = null;
         this.lastNameInput = null;
+        this.phoneInput = null;
         this.emailInput = null;
         this.passwordInput = null;
+        this.repeatPasswordInput = null;
         this.submitButton = null;
-        this.showFormBtn = null;
         this.isLoading = false;
         this.init();
     }
 
     init() {
         this.form = document.getElementById('credentials-form');
-        this.nameInput = document.getElementById('name');
-        this.lastNameInput = document.getElementById('lastName');
-        this.emailInput = document.getElementById('email');
-        this.passwordInput = document.getElementById('password');
-        this.submitButton = this.form.querySelector('button[type="submit"]');
-        this.showFormBtn = document.getElementById('show-credentials-form');
-
         if (this.form) {
+            // Seleccionar inputs por posición ya que no tienen IDs
+            const inputs = this.form.querySelectorAll('input');
+            this.nameInput = inputs[0]; // Primer input (Nombre)
+            this.lastNameInput = inputs[1]; // Segundo input (Apellido)
+            this.phoneInput = inputs[2]; // Tercer input (Teléfono)
+            this.emailInput = inputs[3]; // Cuarto input (Email)
+            this.passwordInput = inputs[4]; // Quinto input (Contraseña)
+            this.repeatPasswordInput = inputs[5]; // Sexto input (Repetir contraseña)
+
+            this.submitButton = this.form.querySelector('button[type="submit"]');
             this.form.addEventListener('submit', this.handleSubmit.bind(this));
         }
     }
 
     async handleSubmit(event) {
         event.preventDefault();
-
         if (this.isLoading) return;
 
         const userData = this.getFormData();
-
         if (!this.validateForm(userData)) {
             return;
         }
@@ -59,16 +62,17 @@ class RegisterHandler {
 
     getFormData() {
         return {
-            name: this.nameInput.value.trim(),
-            lastName: this.lastNameInput.value.trim(),
-            email: this.emailInput.value.trim(),
-            password: this.passwordInput.value
+            name: this.nameInput?.value.trim(),
+            lastName: this.lastNameInput?.value.trim(),
+            phone: this.phoneInput?.value.trim(),
+            email: this.emailInput?.value.trim(),
+            password: this.passwordInput?.value,
+            repeatPassword: this.repeatPasswordInput?.value
         };
     }
 
-    validateForm({ name, lastName, email, password }) {
+    validateForm({ name, lastName, phone, email, password, repeatPassword }) {
         this.clearErrors();
-
         let isValid = true;
 
         if (!name) {
@@ -84,6 +88,14 @@ class RegisterHandler {
             isValid = false;
         } else if (lastName.length < 2) {
             this.showFieldError(this.lastNameInput, 'Mínimo 2 caracteres');
+            isValid = false;
+        }
+
+        if (!phone) {
+            this.showFieldError(this.phoneInput, 'El teléfono es requerido');
+            isValid = false;
+        } else if (phone.length < 8) {
+            this.showFieldError(this.phoneInput, 'Mínimo 8 dígitos');
             isValid = false;
         }
 
@@ -106,45 +118,42 @@ class RegisterHandler {
             isValid = false;
         }
 
+        if (!repeatPassword) {
+            this.showFieldError(this.repeatPasswordInput, 'Confirmar contraseña es requerido');
+            isValid = false;
+        } else if (password !== repeatPassword) {
+            this.showFieldError(this.repeatPasswordInput, 'Las contraseñas no coinciden');
+            isValid = false;
+        }
+
         return isValid;
     }
 
     setLoading(loading) {
         this.isLoading = loading;
-        this.submitButton.disabled = loading;
-        this.submitButton.innerHTML = loading
-            ? '<span class="text-sm font-semibold">Creando cuenta...</span>'
-            : '<span class="text-sm font-semibold">Crear cuenta</span>';
+        if (this.submitButton) {
+            this.submitButton.disabled = loading;
+            this.submitButton.innerHTML = loading
+                ? '<span class="font-semibold">Creando cuenta...</span>'
+                : '<span class="font-semibold">Registrarme</span>';
+        }
     }
 
     showSuccess(message) {
-        this.showNotification(message, 'success');
+        showNotification(message, 'success');
     }
 
     showError(message) {
-        this.showNotification(message, 'error');
-    }
-
-    showNotification(message, type) {
-        const notification = document.createElement('div');
-        notification.className = `fixed top-4 right-4 p-4 rounded-lg z-50 text-white shadow-lg opacity-80 border-1
-        ${type === 'success' ? 'bg-green-900 border-green-300' : 'bg-red-900 border-red-300'}`;
-        notification.textContent = message;
-
-        document.body.appendChild(notification);
-
-        setTimeout(() => {
-            notification.remove();
-        }, 5000);
+        showNotification(message, 'error');
     }
 
     showFieldError(field, message) {
-        field.classList.add('border-red-500');
+        if (!field) return;
 
+        field.classList.add('border-red-500');
         const errorDiv = document.createElement('div');
         errorDiv.className = 'text-red-500 text-xs mt-1 field-error';
         errorDiv.textContent = message;
-
         field.parentNode.appendChild(errorDiv);
     }
 
@@ -152,10 +161,8 @@ class RegisterHandler {
         const errorElements = document.querySelectorAll('.field-error');
         errorElements.forEach(error => error.remove());
 
-        this.nameInput.classList.remove('border-red-500');
-        this.lastNameInput.classList.remove('border-red-500');
-        this.emailInput.classList.remove('border-red-500');
-        this.passwordInput.classList.remove('border-red-500');
+        [this.nameInput, this.lastNameInput, this.phoneInput, this.emailInput, this.passwordInput, this.repeatPasswordInput]
+            .forEach(input => input?.classList.remove('border-red-500'));
     }
 
     isValidEmail(email) {

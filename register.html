@@ -5,162 +5,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Registro - MardelMusic</title>
 </head>
-<body class="flex flex-col md:w-full h-screen md:overflow-hidden md:bg-[#242424] body-gradient">
-<nav class="flex flex-row p-8 bg-transparent h-20">
+<body class="flex flex-col h-screen md:w-full xl:h-screen  bg-light">
+<nav class="flex flex-row items-center p-8 h-20">
     <div class="grow justify-start">
-        <a href="./index.html" class="text-2xl font-bold">
+        <a href="./index" class="text-2xl font-bold text-black">
             MardelMusic
         </a>
     </div>
 </nav>
-
-<section class="bg-[#242424] backdrop:blur-2xl md:p-0 md:m-12 h-full grid grid-cols-1 md:grid-cols-4 border border-transparent md:rounded-2xl">
-    <div class="hidden md:flex md:col-span-2 flex-col justify-center items-center content-center">
-        <h2 class="text-white text-3xl font-bold mb-4">Únete a nuestra comunidad</h2>
-        <p class="text-gray-300 text-lg leading-relaxed">
-            Crea tu cuenta y accede a todas las funcionalidades de nuestra plataforma.
-        </p>
-    </div>
-    <div class="col-span-1 md:col-span-2 flex flex-col justify-center items-center content-center">
-        <div>
-            <h2 class="font-regular text-2xl leading-tight">
-                Crear tu cuenta
-            </h2>
-        </div>
-        <div class="mt-4 w-full max-w-[400px] px-4 md:px-0 flex flex-col gap-3">
-            <button class="w-full bg-white rounded-4xl text-black text-md py-2 px-4 flex flex-row justify-center items-center content-center gap-2 hover:opacity-90">
-                <div class="w-5 h-h">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"
-                         xmlns:xlink="http://www.w3.org/1999/xlink" style="display: block;">
-                        <path fill="#EA4335"
-                              d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
-                        <path fill="#4285F4"
-                              d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
-                        <path fill="#FBBC05"
-                              d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
-                        <path fill="#34A853"
-                              d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
-                        <path fill="none" d="M0 0h48v48H0z"></path>
-                    </svg>
-                </div>
-                <span>Registrarse con Google</span>
-            </button>
-
-            <button id="show-credentials-form" class="w-full bg-gray-700 rounded-4xl text-white text-md py-2 px-4 flex flex-row justify-center items-center content-center gap-2 hover:bg-gray-600 transition-colors">
-                <div class="w-5 h-5">
-                    <i data-lucide="mail"></i>
-                </div>
-                <span>Registrarse con email</span>
-            </button>
-        </div>
-        <form id="credentials-form" class="w-full max-w-[400px] mt-8 px-4 md:px-0 hidden">
-            <div class="flex items-center justify-between mb-4">
-                <h2 class="font-regular text-lg leading-tight">
-                    Datos personales
+<section class="w-full min-h-screen md:p-8">
+    <div class="w-full max-w-6xl mx-auto flex flex-col min-h-[100dvh] bg-lighter shadow-lg border md:rounded-xl p-4 md:p-8">
+        <!-- Layout responsive usando flexbox -->
+        <div class="flex flex-col xl:flex-row xl:items-center xl:content-center xl:justify-center xl:my-auto gap-6 h-full">
+            <!-- Contenedor izquierdo -->
+            <div class="flex-1 xl:max-w-md flex flex-col justify-center gap-4 px-2 md:px-4">
+                <h1 class="text-2xl md:text-3xl font-semibold text-soft-dark">
+                    Bienvenido a MardelMusic
+                </h1>
+                <h2 class="text-lg md:text-xl font-semibold text-soft-dark opacity-80">
+                    Crea tu cuenta para encontrar a tus artistas favoritos.
                 </h2>
-                <button type="button" id="hide-credentials-form" class="text-gray-400 hover:text-white transition-colors">
-                    <i data-lucide="x"></i>
-                </button>
             </div>
 
-            <div class="flex flex-col w-full h-auto gap-4">
-                <div class="input-container">
-                    <label>Nombre</label>
-                    <input id="name" type="text" required
-                           class="p-2 border border-gray-700 rounded bg-gray-800 text-white text-base focus:border-white focus:outline-none w-full shadow-md">
-                </div>
-                <div class="input-container">
-                    <label>Apellido</label>
-                    <input id="lastName" type="text" required
-                           class="p-2 border border-gray-700 rounded bg-gray-800 text-white text-base focus:border-white focus:outline-none w-full shadow-md">
-                </div>
-                <div class="input-container">
-                    <label>Email</label>
-                    <input id="email" type="email" required
-                           class="p-2 border border-gray-700 rounded bg-gray-800 text-white text-base focus:border-white focus:outline-none w-full shadow-md">
-                </div>
-                <div class="input-container flex flex-col">
-                    <label class="text-sm font-medium text-white mb-1">Contraseña</label>
-                    <div class="relative flex items-center">
-                        <input type="password" id="password"
-                               class="p-2 border border-gray-700 rounded bg-gray-800 text-white text-base focus:border-white focus:outline-none w-full shadow-md"/>
-                        <button type="button" class="absolute right-3 cursor-pointer" id="toggle-password">
-                            <i data-lucide="eye-off"></i>
+            <!-- Contenedor derecho -->
+            <div class="flex-1 xl:max-w-md flex flex-col justify-center gap-4 px-2 md:px-4">
+                <div class="flex flex-col gap-4">
+                    <div class="w-full mb-2 flex flex-col items-center content-center justify-center">
+                        <h2 class="text-xl md:text-2xl font-semibold text-center text-soft-dark">Registrarme</h2>
+                    </div>
+
+                    <div class="flex flex-row w-full gap-4">
+                        <button class="w-full border border-[#333333] rounded-4xl text-black text-sm md:text-md py-2 px-3 md:px-4 flex flex-row justify-center items-center content-center gap-2 hover:opacity-90 hover:bg-[#333333] hover:text-white transition">
+                            <div class="w-4 h-4 md:w-5 md:h-5 flex-shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: block;">
+                                    <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+                                    <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+                                    <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+                                    <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+                                    <path fill="none" d="M0 0Wh48v48H0z"></path>
+                                </svg>
+                            </div>
+                            <span class="text-xs md:text-sm truncate">Registrarme con Google</span>
                         </button>
                     </div>
-                    <div class="text-xs text-gray-400 mt-1">Mínimo 8 caracteres, incluye mayúscula, minúscula y número</div>
+
+                    <div class="flex flex-row w-full justify-center gap-4">
+                        <button id="show-credentials-form" class="w-full border border-[#333333] rounded-4xl text-black text-sm md:text-md py-2 px-3 md:px-4 flex flex-row justify-center items-center content-center gap-2 hover:opacity-90 hover:bg-[#333333] hover:text-white transition">
+                            <span class="text-xs md:text-sm">Registrarme con usuario y contraseña</span>
+                        </button>
+                    </div>
+
+                    <div id="go-to-login" class="flex flex-row w-full justify-center gap-4">
+                        <span class="border-b font-semibold text-center text-soft-dark opacity-80 text-sm">
+                            Ya tengo cuenta
+                            <a class="font-bold pointer" href="./login">iniciar sesión</a>
+                        </span>
+                    </div>
                 </div>
-                <button class="bg-white rounded-4xl text-black text-md py-2 px-4 flex flex-row justify-center items-center content-center gap-2 hover:opacity-90"
-                        type="submit">
-                    <span class="text-sm font-semibold">Crear cuenta</span>
-                </button>
+
+                <form id="credentials-form" class="w-full mt-6 hidden">
+                    <div class="w-full mb-4 flex flex-col items-start">
+                        <h2 class="text-lg font-semibold text-soft-dark">Registrarme</h2>
+                    </div>
+
+                    <!-- Inputs en una sola columna en móvil -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="flex flex-col">
+                            <label class="text-soft-dark font-regular mb-1 text-sm">Nombre</label>
+                            <input type="text" placeholder="Tu nombre" class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="text-soft-dark font-regular mb-1 text-sm">Apellido</label>
+                            <input type="text" placeholder="Tu apellido" class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col mb-4">
+                        <label class="text-soft-dark font-regular mb-1 text-sm">Teléfono</label>
+                        <input type="text" placeholder="Sin código de área" class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                    </div>
+
+                    <div class="flex flex-col mb-4">
+                        <label class="text-soft-dark font-regular mb-1 text-sm">Email</label>
+                        <input type="email" placeholder="tu@email.com" class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                    </div>
+
+                    <div class="flex flex-col mb-4">
+                        <label for="new-password-input" class="text-soft-dark font-regular mb-1 text-sm">Contraseña nueva</label>
+                        <input id="new-password-input" type="password" placeholder="Ingrese su nueva contraseña" class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                    </div>
+
+                    <div class="flex flex-col mb-4">
+                        <label for="repeat-new-password-input" class="text-soft-dark font-regular mb-1 text-sm">Repetir contraseña nueva</label>
+                        <input id="repeat-new-password-input" type="password" placeholder="Repita su nueva contraseña" class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                    </div>
+
+                    <div class="flex flex-row w-full justify-center gap-4 mb-4">
+                        <span class="border-b font-semibold text-center text-soft-dark opacity-80 text-sm">
+                            Ya tengo cuenta
+                            <a class="font-bold pointer" href="./login">iniciar sesión</a>
+                        </span>
+                    </div>
+
+                    <div class="flex flex-row w-full justify-center gap-4">
+                        <button class="w-full rounded-4xl bg-darker text-white text-sm py-2 px-4 flex flex-row justify-center items-center gap-2 hover:opacity-90" type="submit">
+                            <span class="font-semibold">Registrarme</span>
+                        </button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 </section>
-
 <script type="module" src="/src/main.js"></script>
 <script type="module">
     import RegisterHandler from "/src/handlers/register.handler.js";
 
     // Elementos para mostrar/ocultar formulario
-    const showFormBtn = document.getElementById("show-credentials-form");
-    const hideFormBtn = document.getElementById("hide-credentials-form");
+    const showFormBtn = document.getElementById('show-credentials-form');
     const credentialsForm = document.getElementById("credentials-form");
 
-    // Toggle password
-    const toggleBtn = document.getElementById("toggle-password");
-    const passwordInput = document.getElementById("password");
-    let show = false;
+    const goToLogin = document.getElementById("go-to-login");
 
-    // Mostrar formulario
-    showFormBtn.addEventListener("click", () => {
-        credentialsForm.classList.remove("hidden");
-        showFormBtn.style.display = "none";
+    let openForm = false;
 
-        // Scroll suave hacia el formulario
-        setTimeout(() => {
-            credentialsForm.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center'
-            });
-        }, 100);
+    showFormBtn?.addEventListener("click", (e) => {
+        openForm = !openForm;
+        if (openForm) {
+            credentialsForm.classList.remove("hidden");
+            goToLogin.classList.add("hidden");
+        } else {
+            credentialsForm.classList.add("hidden");
+            goToLogin.classList.remove("hidden");
+        }
+    })
 
-        if (window.refreshIcons) {
-            window.refreshIcons();
+
+
+    /*
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('#hide-credentials-form')) {
+            credentialsForm.classList.add("hidden");
+
+            // Mostrar botones de registro social nuevamente
+            showCredentialsBtn.parentElement.style.display = "flex";
+            document.querySelector('button:has(span:contains("Google"))').parentElement.style.display = "flex";
+
+            // Limpiar campos del formulario
+            credentialsForm.reset();
         }
     });
-
-    // Ocultar formulario
-    hideFormBtn.addEventListener("click", () => {
-        credentialsForm.classList.add("hidden");
-        showFormBtn.style.display = "flex";
-
-        // Limpiar campos del formulario
-        credentialsForm.reset();
-
-        // Scroll hacia los botones
-        setTimeout(() => {
-            showFormBtn.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center'
-            });
-        }, 100);
-    });
-
-    // Toggle password visibility
-    toggleBtn.addEventListener("click", () => {
-        show = !show;
-        toggleBtn.innerHTML = show
-            ? '<i data-lucide="eye"></i>'
-            : '<i data-lucide="eye-off"></i>';
-        passwordInput.type = show ? "text" : "password";
-        passwordInput.focus();
-        if (window.refreshIcons) {
-            window.refreshIcons();
-        }
-    });
-
+*/
     new RegisterHandler();
 </script>
 </body>

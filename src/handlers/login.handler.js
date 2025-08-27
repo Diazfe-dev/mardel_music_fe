@@ -1,5 +1,6 @@
 import authService from '../services/auth.service.js';
 import {showNotification} from '../utils/toaster.js';
+
 class LoginHandler {
     constructor() {
         this.form = null;
@@ -11,12 +12,14 @@ class LoginHandler {
     }
 
     init() {
-        this.form = document.querySelector('form');
-        this.emailInput = document.getElementById('email');
-        this.passwordInput = document.getElementById('password');
-        this.submitButton = this.form.querySelector('button[type="submit"]');
-
+        this.form = document.getElementById('credentials-form');
         if (this.form) {
+            // Seleccionar inputs por posición ya que el email no tiene ID
+            const inputs = this.form.querySelectorAll('input');
+            this.emailInput = inputs[0]; // Primer input (Email)
+            this.passwordInput = document.getElementById('password'); // Segundo input tiene ID
+
+            this.submitButton = this.form.querySelector('button[type="submit"]');
             this.form.addEventListener('submit', this.handleSubmit.bind(this));
         }
     }
@@ -36,7 +39,9 @@ class LoginHandler {
 
             if (result.success) {
                 this.showSuccess('Inicio de sesión exitoso');
-                setTimeout(() => { window.location.href = '/dashboard.html' }, 1500);
+                setTimeout(() => {
+                    window.location.href = '/dashboard.html'
+                }, 1500);
             } else {
                 this.showError(result.error.message);
             }
@@ -50,14 +55,13 @@ class LoginHandler {
 
     getFormData() {
         return {
-            email: this.emailInput.value.trim(),
-            password: this.passwordInput.value
+            email: this.emailInput?.value.trim(),
+            password: this.passwordInput?.value
         };
     }
 
     validateForm({email, password}) {
         this.clearErrors();
-
         let isValid = true;
 
         if (!email) {
@@ -81,10 +85,12 @@ class LoginHandler {
 
     setLoading(loading) {
         this.isLoading = loading;
-        this.submitButton.disabled = loading;
-        this.submitButton.innerHTML = loading
-            ? '<span class="text-sm font-semibold">Iniciando...</span>'
-            : '<span class="text-sm font-semibold">Iniciar sesión</span>';
+        if (this.submitButton) {
+            this.submitButton.disabled = loading;
+            this.submitButton.innerHTML = loading
+                ? '<span class="font-semibold">Iniciando...</span>'
+                : '<span class="font-semibold">Iniciar Sesión</span>';
+        }
     }
 
     showSuccess(message) {
@@ -96,19 +102,21 @@ class LoginHandler {
     }
 
     showFieldError(field, message) {
+        if (!field) return;
+
         field.classList.add('border-red-500');
         const errorDiv = document.createElement('div');
         errorDiv.className = 'text-red-500 text-xs mt-1 field-error';
         errorDiv.textContent = message;
-
         field.parentNode.appendChild(errorDiv);
     }
 
     clearErrors() {
         const errorElements = document.querySelectorAll('.field-error');
         errorElements.forEach(error => error.remove());
-        this.emailInput.classList.remove('border-red-500');
-        this.passwordInput.classList.remove('border-red-500');
+
+        this.emailInput?.classList.remove('border-red-500');
+        this.passwordInput?.classList.remove('border-red-500');
     }
 
     isValidEmail(email) {

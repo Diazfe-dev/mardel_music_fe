@@ -1,6 +1,6 @@
 export function showNotification(message, type) {
     const notification = document.createElement('div');
-    notification.className = `fixed top-4 right-4 p-4 rounded-lg z-50 text-white shadow-lg opacity-80 border-1 flex items-center gap-2
+    notification.className = `fixed top-4 right-4 z-[9999] border border-gray-200 rounded-lg shadow-lg p-4 max-w-sm animate-notification flex flex-row items-center
     ${type === 'success' ? 'bg-green-900 border-green-300' : 'bg-red-900 border-red-300'}`;
 
     const iconContainer = document.createElement('div');
@@ -25,6 +25,8 @@ export function showNotification(message, type) {
     }
 
     setTimeout(() => {
-        notification.remove();
-    }, 5000);
+        notification.addEventListener('animationend', () => {
+            notification.remove();
+        });
+    }, 1500);
 }

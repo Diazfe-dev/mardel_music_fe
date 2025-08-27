@@ -8,7 +8,7 @@
 <body class="flex flex-col w-full h-screen body-gradient">
 <nav class="flex flex-row p-10 bg-transparent h-20">
     <div class="grow justify-start">
-        <a href="./index.html" class="text-2xl font-bold">
+        <a href="./index" class="text-2xl font-bold">
             MardelMusic
         </a>
     </div>
@@ -24,8 +24,8 @@
     </div>
     <div class="grow">
         <ul class="flex flex-row justify-end gap-4">
-            <li><a class="link" href="./login.html">Inicar sesión</a></li>
-            <li><a class="link" href="register.html">Registrarme</a></li>
+            <li><a class="link" href="./login">Inicar sesión</a></li>
+            <li><a class="link" href="register">Registrarme</a></li>
         </ul>
     </div>
 </nav>
@@ -59,59 +59,59 @@
     const eventsGrid = document.getElementById("events-grid");
     const events = [
         {
-            uri: "public/placeholder-image.jpeg",
+            uri: "/placeholder-image.jpeg",
             title: "Festival de Rock",
             location: "Estadio Único",
             date: "20/12/2023 - 18:00hs"
         },
         {
-            uri: "public/placeholder-image.jpeg",
+            uri: "/placeholder-image.jpeg",
             title: "Festival de Rock",
             location: "Estadio Único",
             date: "20/12/2023 - 18:00hs"
         },
         {
-            uri: "public/placeholder-image.jpeg",
+            uri: "/placeholder-image.jpeg",
             title: "Festival de Rock",
             location: "Estadio Único",
             date: "20/12/2023 - 18:00hs"
         },
         {
-            uri: "public/placeholder-image.jpeg",
+            uri: "/placeholder-image.jpeg",
             title: "Festival de Rock",
             location: "Estadio Único",
             date: "20/12/2023 - 18:00hs"
         },
         {
-            uri: "public/placeholder-image.jpeg",
+            uri: "/placeholder-image.jpeg",
             title: "Festival de Rock",
             location: "Estadio Único",
             date: "20/12/2023 - 18:00hs"
         },
         {
-            uri: "public/placeholder-image.jpeg",
+            uri: "/placeholder-image.jpeg",
             title: "Festival de Rock",
             location: "Estadio Único",
             date: "20/12/2023 - 18:00hs"
         },
         {
-            uri: "public/placeholder-image.jpeg",
+            uri: "/placeholder-image.jpeg",
             title: "Festival de Rock",
             location: "Estadio Único",
             date: "20/12/2023 - 18:00hs"
         },
         {
-            uri: "public/placeholder-image.jpeg",
+            uri: "/placeholder-image.jpeg",
             title: "Festival de Rock",
             location: "Estadio Único",
             date: "20/12/2023 - 18:00hs"
         },
         {
-            uri: "public/placeholder-image.jpeg",
+            uri: "/placeholder-image.jpeg",
             title: "Festival de Rock",
             location: "Estadio Único",
             date: "20/12/2023 - 18:00hs"
-        }
+        },
     ]
     if (eventsGrid && events.length > 0) {
         eventsGrid.innerHTML = '';
@@ -203,32 +203,32 @@
     const artistsSlider = document.getElementById("artists-slider");
     const artists = [
         {
-            uri: "public/placeholder-image.jpeg",
+            uri: "/placeholder-image.jpeg",
             name: "Artista 1",
             description: "Descripción del artista 1"
         },
         {
-            uri: "public/placeholder-image.jpeg",
+            uri: "/placeholder-image.jpeg",
             name: "Artista 1",
             description: "Descripción del artista 1"
         },
         {
-            uri: "public/placeholder-image.jpeg",
+            uri: "/placeholder-image.jpeg",
             name: "Artista 1",
             description: "Descripción del artista 1"
         },
         {
-            uri: "public/placeholder-image.jpeg",
+            uri: "/placeholder-image.jpeg",
             name: "Artista 1",
             description: "Descripción del artista 1"
         },
         {
-            uri: "public/placeholder-image.jpeg",
+            uri: "/placeholder-image.jpeg",
             name: "Artista 1",
             description: "Descripción del artista 1"
         },
     ]
-    if(artistsSlider && artists.length > 0) {
+    if (artistsSlider && artists.length > 0) {
         artists.forEach((artist) => {
             const artistNode = document.createElement("div");
             artistNode.className = "w-64 h-64 bg-gray-200 rounded-lg overflow-hidden shadow-lg flex flex-col items-center justify-center";

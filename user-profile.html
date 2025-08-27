@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mi Perfil - MardelMusic</title>
+</head>
+<body class="flex flex-col md:w-full h-screen md:overflow-hidden bg-light">
+<nav class="flex flex-row items-center p-8 h-20">
+    <div class="grow justify-start">
+        <a href="./dashboard.html" class="text-2xl font-bold text-black">
+            MardelMusic
+        </a>
+    </div>
+    <div class="grow-1 relative flex justify-end gap-8">
+        <div class="relative">
+            <button id="notification-bell"
+                    class="text-[#fefefe] bg-[#333333] opacity-50  rounded-full hover:opacity-100 w-10 h-10 transition flex items-center justify-center cursor-pointer">
+                <i data-lucide="bell"></i>
+            </button>
+            <div id="notification-badge"
+                 class="hidden absolute -top-1 -right-1 rounded-full bg-red-500 min-w-[20px] h-5 flex items-center justify-center text-white text-xs font-bold px-1">
+            </div>
+            <ul id="notification-dropdown"
+                class="hidden absolute top-0 right-0 overflow-hidden mt-12 w-80 max-h-96 bg-white text-black rounded-lg shadow-xl border border-gray-200 flex flex-col z-50">
+            </ul>
+        </div>
+        <div class="relative">
+            <button id="profile-img"
+                    class="w-10 h-10 bg-dark rounded-full flex items-center justify-center cursor-pointer">
+            </button>
+
+            <ul id="profile-dropdown"
+                class="hidden overflow-hidden absolute top-0 right-0 mt-12 md:w-50 md:h-auto bg-white text-black rounded-lg shadow-lg flex flex-col gap-2 z-50">
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="w-full min-h-screen p-4 md:p-8">
+    <div class="w-full max-w-6xl mx-auto bg-lighter shadow-lg border rounded-xl p-4 md:p-8">
+        <!-- Layout responsive -->
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+            <!-- Columna izquierda -->
+            <div class="xl:col-span-4 flex flex-col px-2 md:px-4 border-b xl:border-b-0 xl:border-r border-[#2B7FFFFF] pb-6 xl:pb-0">
+                <div class="w-full mb-4 flex flex-col items-start">
+                    <span id="profile-username" class="text-lg font-semibold text-soft-dark">Cargando...</span>
+                </div>
+
+                <!-- Foto de perfil -->
+                <div class="w-full mb-6 flex flex-col items-center">
+                    <div class="relative">
+                        <div class="w-48 h-48 md:w-58 md:h-58 overflow-hidden flex items-center justify-center border rounded-lg shadow">
+                            <img id="profile-image"
+                                 src="https://img.freepik.com/premium-vector/account-icon-user-icon-vector-graphics_292645-552.jpg"
+                                 alt="Foto de perfil del usuario"
+                                 class="w-full h-full object-cover"/>
+                        </div>
+                        <button id="remove-image-btn"
+                                class="absolute top-2 right-2 w-8 h-8 border rounded-full bg-[#333333] text-white opacity-30 hover:opacity-50 transition flex items-center justify-center cursor-pointer">
+                            <i data-lucide="x" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Cambiar foto -->
+                <form id="image-form" class="mb-8">
+                    <div class="w-full mb-4 flex flex-col">
+                        <label for="img-url-input" class="text-soft-dark font-regular mb-1 text-sm">Cambiar foto de
+                            perfil</label>
+                        <input id="img-url-input"
+                               type="url"
+                               placeholder="URL de la imagen"
+                               class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                    </div>
+                    <button type="submit"
+                            class="shadow text-white w-full p-2 bg-[#2B7FFFFF] rounded hover:bg-[#2B7FFFAA] transition text-sm">
+                        Cambiar foto de perfil
+                    </button>
+                </form>
+
+                <hr class="w-full border border-[#2B7FFFFF] rounded-lg my-6 shadow-lg"/>
+
+                <!-- Cambiar contraseña -->
+                <form id="password-form">
+                    <div class="w-full mb-4 flex flex-col">
+                        <span class="text-lg font-semibold text-soft-dark mb-4">Cambiar contraseña</span>
+
+                        <div class="flex flex-col w-full mb-4">
+                            <label for="previous-password-input" class="text-soft-dark font-regular mb-1 text-sm">Contraseña
+                                anterior</label>
+                            <input id="previous-password-input"
+                                   type="password"
+                                   placeholder="Ingrese su contraseña anterior"
+                                   class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                        </div>
+
+                        <div class="flex flex-col w-full mb-4">
+                            <label for="new-password-input" class="text-soft-dark font-regular mb-1 text-sm">Contraseña
+                                nueva</label>
+                            <input id="new-password-input"
+                                   type="password"
+                                   placeholder="Ingrese su nueva contraseña"
+                                   class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                        </div>
+
+                        <div class="flex flex-col w-full mb-4">
+                            <label for="repeat-new-password-input" class="text-soft-dark font-regular mb-1 text-sm">Repetir
+                                contraseña nueva</label>
+                            <input id="repeat-new-password-input"
+                                   type="password"
+                                   placeholder="Repita su nueva contraseña"
+                                   class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                        </div>
+
+                        <button type="submit"
+                                class="shadow text-white w-full p-2 bg-[#2B7FFFFF] rounded hover:bg-[#2B7FFFAA] transition text-sm">
+                            Cambiar contraseña
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Columna derecha -->
+            <div class="xl:col-span-8 flex flex-col px-2 md:px-4">
+                <form id="profile-form">
+                    <div class="w-full mb-6 flex flex-col">
+                        <span class="text-lg font-semibold text-soft-dark mb-4">Editar datos de usuario</span>
+
+                        <!-- Nombre y Apellido -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div class="flex flex-col">
+                                <label class="text-soft-dark font-regular mb-1 text-sm">Nombre</label>
+                                <input id="name-input"
+                                       type="text"
+                                       placeholder="Tu nombre"
+                                       class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="text-soft-dark font-regular mb-1 text-sm">Apellido</label>
+                                <input id="lastname-input"
+                                       type="text"
+                                       placeholder="Tu apellido"
+                                       class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                            </div>
+                        </div>
+
+                        <!-- Teléfono -->
+                        <div class="flex flex-col mb-4">
+                            <label class="text-soft-dark font-regular mb-1 text-sm">Teléfono</label>
+                            <input id="phone-input"
+                                   type="tel"
+                                   placeholder="Sin código de área"
+                                   class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="flex flex-col mb-4">
+                            <label class="text-soft-dark font-regular mb-1 text-sm">Email</label>
+                            <input id="email-input"
+                                   disabled
+                                   type="email"
+                                   placeholder="tu@email.com"
+                                   class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                        </div>
+
+                        <!-- Nacionalidad -->
+                        <div class="flex flex-col mb-4">
+                            <label class="text-soft-dark font-regular mb-1 text-sm">Nacionalidad</label>
+                            <select disabled id="nationality-select"
+                                    class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm">
+                                <option value="argentina">Argentina</option>
+                                <option value="brasil">Brasil</option>
+                                <option value="chile">Chile</option>
+                                <option value="uruguay">Uruguay</option>
+                                <option value="paraguay">Paraguay</option>
+                            </select>
+                        </div>
+
+                        <!-- Rol -->
+                        <div class="flex flex-col mb-6">
+                            <label class="text-soft-dark font-regular mb-1 text-sm">Rol</label>
+                            <input id="role-input"
+                                   value="Viewer"
+                                   disabled
+                                   type="text"
+                                   class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm opacity-60"/>
+                        </div>
+
+                        <!-- Botones -->
+                        <div class="flex flex-col sm:flex-row justify-end gap-4">
+                            <button type="button" id="cancel-btn"
+                                    class="shadow text-white w-full sm:w-[200px] p-2 bg-[#242424] rounded hover:bg-[#333333] transition text-sm">
+                                Cancelar
+                            </button>
+                            <button type="submit"
+                                    class="shadow text-white w-full sm:w-[200px] p-2 bg-[#2B7FFFFF] rounded hover:bg-[#2B7FFFAA] transition text-sm">
+                                Guardar cambios
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="module" src="/src/main.js"></script>
+<script type="module">
+    import authHandler from "./src/handlers/auth.handler.js";
+    import LayoutHandler from "./src/handlers/layout-handler.js";
+    import NotificationHandler from "./src/handlers/notification.handler.js";
+    import ProfileHandler from "./src/handlers/profile.handler.js";
+    import AuthGuard from "./src/utils/auth.guard.js";
+
+    const layoutHandler = new LayoutHandler();
+    const notificationHandler = new NotificationHandler();
+    const profileHandler = new ProfileHandler();
+
+    authHandler.subscribe(AuthGuard);
+    authHandler.subscribe(layoutHandler.setupLayout);
+    authHandler.subscribe(() => notificationHandler.init());
+    authHandler.subscribe((user) => profileHandler.init(user));
+    await authHandler.getUserProfile();
+    window.refreshIcons();
+</script>
+</body>
+</html>

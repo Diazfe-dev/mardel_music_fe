@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Crear Perfil de Artista - MardelMusic</title>
+</head>
+<body class="flex flex-col md:w-full h-screen md:overflow-hidden bg-light">
+<nav class="flex flex-row items-center p-8 h-20">
+    <div class="grow justify-start">
+        <a href="./dashboard.html" class="text-2xl font-bold text-black">
+            MardelMusic
+        </a>
+    </div>
+    <div class="grow-1 relative flex justify-end gap-8">
+        <div class="relative">
+            <button id="notification-bell"
+                    class="text-[#fefefe] bg-[#333333] opacity-50 rounded-full hover:opacity-100 w-10 h-10 transition flex items-center justify-center cursor-pointer">
+                <i data-lucide="bell"></i>
+            </button>
+            <div id="notification-badge"
+                 class="hidden absolute -top-1 -right-1 rounded-full bg-red-500 min-w-[20px] h-5 flex items-center justify-center text-white text-xs font-bold px-1">
+            </div>
+            <ul id="notification-dropdown"
+                class="hidden absolute top-0 right-0 overflow-hidden mt-12 w-80 max-h-96 bg-white text-black rounded-lg shadow-xl border border-gray-200 flex flex-col z-50">
+            </ul>
+        </div>
+        <div class="relative">
+            <button id="profile-img"
+                    class="w-10 h-10 bg-dark rounded-full flex items-center justify-center cursor-pointer">
+            </button>
+            <ul id="profile-dropdown"
+                class="hidden overflow-hidden absolute top-0 right-0 mt-12 md:w-50 md:h-auto bg-white text-black rounded-lg shadow-lg flex flex-col gap-2 z-50">
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="w-full min-h-screen p-4 md:p-8">
+    <div class="w-full max-w-6xl mx-auto bg-lighter shadow-lg border rounded-xl p-4 md:p-8">
+        <div class="mb-6">
+            <span class="text-sm text-soft-dark">Recorda que cuando cree tu perfil de artista, un administrador va a validar la informacion que enviaste</span>
+        </div>
+        <div class="mb-6">
+            <h1 class="text-2xl font-bold text-soft-dark mb-2">Crear Perfil de Artista</h1>
+            <p class="text-sm text-gray-600">Complete la información para crear su perfil de artista</p>
+        </div>
+
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+            <!-- Columna izquierda - Imagen -->
+            <div class="xl:col-span-4 flex flex-col px-2 md:px-4 border-b xl:border-b-0 xl:border-r border-[#2B7FFFFF] pb-6 xl:pb-0">
+                <!-- Foto de perfil -->
+                <div class="w-full mb-6 flex flex-col items-center">
+                    <div class="relative">
+                        <div class="w-48 h-48 md:w-58 md:h-58 overflow-hidden flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg">
+                            <div id="image-placeholder" class="flex flex-col items-center text-gray-400">
+                                <i data-lucide="image" class="w-12 h-12 mb-2"></i>
+                                <span class="text-sm">Imagen de perfil</span>
+                            </div>
+                            <img id="profile-image" src="" alt="Vista previa"
+                                 class="hidden w-full h-full object-cover"/>
+                        </div>
+                        <button id="remove-image-btn"
+                                class="hidden absolute top-2 right-2 w-8 h-8 border rounded-full bg-[#333333] text-white opacity-30 hover:opacity-50 transition flex items-center justify-center cursor-pointer">
+                            <i data-lucide="x" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- URL de imagen -->
+                <div class="w-full mb-4 flex flex-col">
+                    <label for="avatar-url-input" class="text-soft-dark font-regular mb-1 text-sm">URL de imagen de
+                        perfil</label>
+                    <input id="avatar-url-input"
+                           type="url"
+                           placeholder="https://ejemplo.com/imagen.jpg"
+                           class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                </div>
+            </div>
+
+            <!-- Columna derecha - Formulario -->
+            <div class="xl:col-span-8 flex flex-col px-2 md:px-4">
+                <form id="artist-profile-form">
+                    <!-- Información básica -->
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-soft-dark mb-4">Información básica</h3>
+
+                        <div class="flex flex-col mb-4">
+                            <label class="text-soft-dark font-regular mb-1 text-sm">Nombre artístico *</label>
+                            <input id="artist-name-input"
+                                   type="text"
+                                   placeholder="Tu nombre como artista"
+                                   required
+                                   class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                        </div>
+
+                        <div class="flex flex-col mb-4">
+                            <label class="text-soft-dark font-regular mb-1 text-sm">Biografía</label>
+                            <textarea id="bio-input"
+                                      rows="4"
+                                      placeholder="Cuéntanos sobre tu música y tu historia..."
+                                      class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm resize-none"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Redes sociales -->
+                    <div class="mb-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-soft-dark">Redes sociales</h3>
+                            <button type="button" id="add-social-btn"
+                                    class="text-sm px-3 py-1 bg-[#2B7FFFFF] text-white rounded hover:bg-[#2B7FFFAA] transition flex items-center gap-1">
+                                <i data-lucide="plus" class="w-4 h-4"></i>
+                                Agregar red social
+                            </button>
+                        </div>
+                        <div id="social-media-container" class="flex flex-col gap-3">
+                            <p class="text-sm text-gray-500">No has agregado redes sociales aún</p>
+                        </div>
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="flex flex-col sm:flex-row justify-end gap-4">
+                        <button type="button" id="cancel-btn"
+                                class="shadow text-white w-full sm:w-[200px] p-2 bg-[#242424] rounded hover:bg-[#333333] transition text-sm">
+                            Cancelar
+                        </button>
+                        <button type="submit"
+                                class="shadow text-white w-full sm:w-[200px] p-2 bg-[#2B7FFFFF] rounded hover:bg-[#2B7FFFAA] transition text-sm">
+                            Crear perfil
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="module" src="/src/main.js"></script>
+<script type="module">
+    import authHandler from "/src/handlers/auth.handler.js";
+    import LayoutHandler from "/src/handlers/layout-handler.js";
+    import NotificationHandler from "/src/handlers/notification.handler.js";
+    import ArtistProfileCreateHandler from "/src/handlers/artist-profile-create.handler.js";
+    import AuthGuard from "/src/utils/auth.guard.js";
+
+    const layoutHandler = new LayoutHandler();
+    const notificationHandler = new NotificationHandler();
+    const artistProfileCreateHandler = new ArtistProfileCreateHandler();
+
+    authHandler.subscribe(AuthGuard);
+    authHandler.subscribe(layoutHandler.setupLayout);
+    authHandler.subscribe(() => notificationHandler.init());
+    authHandler.subscribe((user) => artistProfileCreateHandler.init(user));
+    await authHandler.getUserProfile();
+    window.refreshIcons();
+</script>
+</body>
+</html>
