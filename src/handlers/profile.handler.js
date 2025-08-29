@@ -19,7 +19,7 @@ class ProfileHandler {
 
     setupElements() {
         // Profile form
-        this.profileForm = document.getElementById('profile-form');
+        this.profileForm = document.getElementById('artist-form');
         this.nameInput = document.getElementById('name-input');
         this.lastnameInput = document.getElementById('lastname-input');
         this.phoneInput = document.getElementById('phone-input');
@@ -31,9 +31,9 @@ class ProfileHandler {
         // Image form
         this.imageForm = document.getElementById('image-form');
         this.imgUrlInput = document.getElementById('img-url-input');
-        this.profileImage = document.getElementById('profile-image');
+        this.profileImage = document.getElementById('artist-image');
         this.removeImageBtn = document.getElementById('remove-image-btn');
-        this.profileUsername = document.getElementById('profile-username');
+        this.profileUsername = document.getElementById('artist-username');
 
         // Password form
         this.passwordForm = document.getElementById('password-form');
@@ -327,8 +327,8 @@ class ProfileHandler {
     }
 
     clearErrors() {
-        document.querySelectorAll('#profile-form .field-error').forEach(error => error.remove());
-        document.querySelectorAll('#profile-form input').forEach(input =>
+        document.querySelectorAll('#artist-form .field-error').forEach(error => error.remove());
+        document.querySelectorAll('#artist-form input').forEach(input =>
             input.classList.remove('border-red-500')
         );
     }

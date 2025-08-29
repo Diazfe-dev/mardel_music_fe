@@ -26,6 +26,11 @@
     background: linear-gradient(to right, #2C5364, #203A43, #0F2027, #333333);
 }
 
+.profile-gradient{
+    background: var(--dark-gray);
+    background: linear-gradient(to bottom, var(--dark-gray), var(--bg-color));
+}
+
 .bg-light{
     background-color: var(--bg-light) !important;
 }

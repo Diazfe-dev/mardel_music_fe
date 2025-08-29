@@ -59,5 +59,7 @@ export function createDialog(
 
     dialog.appendChild(modalContent);
 
+    document.body.appendChild(dialog);
+
     return dialog;
 }

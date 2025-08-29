@@ -37,6 +37,7 @@ class RegisterHandler {
         if (this.isLoading) return;
 
         const userData = this.getFormData();
+        console.log(userData);
         if (!this.validateForm(userData)) {
             return;
         }
@@ -44,7 +45,14 @@ class RegisterHandler {
         this.setLoading(true);
 
         try {
-            const result = await authService.register(userData);
+            const formData = {
+                name: userData.name,
+                lastName: userData.lastName,
+                phoneNumber: userData.phone,
+                email: userData.email,
+                password: userData.password
+            }
+            const result = await authService.register(formData);
             if (result.success) {
                 this.showSuccess('Registro exitoso. Redirigiendo...');
                 setTimeout(() => {

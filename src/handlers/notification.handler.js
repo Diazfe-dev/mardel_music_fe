@@ -84,7 +84,7 @@ class NotificationHandler {
 
     openDropdown() {
         this.notificationDropdown.classList.remove('hidden');
-        const profileDropdown = document.getElementById('profile-dropdown');
+        const profileDropdown = document.getElementById('artist-dropdown');
         if (profileDropdown && !profileDropdown.classList.contains('hidden')) {
             profileDropdown.classList.add('hidden');
         }

@@ -13,8 +13,8 @@ export default defineConfig({
                 login: 'login.html',
                 register: 'register.html',
                 dashboard: 'dashboard.html',
-                userProfile: 'user-profile.html',
-                artistProfile: 'artist-profile.html',
+                userProfile: 'user-artist.html',
+                artistProfile: 'artist-artist.html',
             },
             external: [/\.(jpg|jpeg|png|gif|webp)$/]
         }

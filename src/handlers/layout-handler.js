@@ -52,7 +52,7 @@ class LayoutHandler {
             const span = document.createElement('span');
             span.className = "text-sm font-medium";
             span.textContent = item.text;
-            li.className = "p-2 hover:bg-[#333333] hover:opacity-80 hover:text-white transition-all cursor-pointer";
+            li.className = "py-4 px-2 hover:bg-[#242424] text-sm font-bold text-white transition-all cursor-pointer";
             li.appendChild(span);
             li.addEventListener('click', (e) => {
                 profileDropdown.classList.add('hidden');
@@ -64,7 +64,7 @@ class LayoutHandler {
 
         const li = document.createElement('li');
         li.id = "logout-btn";
-        li.className = "p-2 hover:bg-[#333333] hover:opacity-80 hover:text-white transition-all cursor-pointer";
+        li.className = "py-4 px-2 hover:bg-[#242424] text-sm font-bold text-white transition-all cursor-pointer";
         const span = document.createElement('span');
         span.className = "text-sm font-medium";
         span.textContent = "Cerrar sesión";

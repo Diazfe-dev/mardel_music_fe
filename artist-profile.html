@@ -5,135 +5,133 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Crear Perfil de Artista - MardelMusic</title>
 </head>
-<body class="flex flex-col md:w-full h-screen md:overflow-hidden bg-light">
-<nav class="flex flex-row items-center p-8 h-20">
+<body class="flex flex-col md:w-full h-screen md:overflow-hidden bg-darker">
+<nav class="flex flex-row items-center p-8 h-20 bg-transparent">
     <div class="grow justify-start">
-        <a href="./dashboard.html" class="text-2xl font-bold text-black">
+        <a href="./dashboard.html" class="text-2xl font-bold text-light ">
             MardelMusic
         </a>
     </div>
-    <div class="grow-1 relative flex justify-end gap-8">
-        <div class="relative">
+    <div class="grow-1 relative flex justify-end items-center gap-4">
+        <div class="relative w-8 h-8 bg-dark rounded-full flex items-center justify-center shadow-md">
             <button id="notification-bell"
-                    class="text-[#fefefe] bg-[#333333] opacity-50 rounded-full hover:opacity-100 w-10 h-10 transition flex items-center justify-center cursor-pointer">
+                    class="text-[#fefefe] backdrop-blur-2xl bg-darker opacity-50 rounded-full hover:opacity-100 w-8 h-8 transition flex items-center justify-center cursor-pointer">
                 <i data-lucide="bell"></i>
             </button>
             <div id="notification-badge"
-                 class="hidden absolute -top-1 -right-1 rounded-full bg-red-500 min-w-[20px] h-5 flex items-center justify-center text-white text-xs font-bold px-1">
+                 class="hidden absolute -top-1 -right-1 rounded-full bg-[#2B7FFFFF] min-w-[20px] h-5 flex items-center justify-center text-white text-xs font-bold px-1">
             </div>
             <ul id="notification-dropdown"
                 class="hidden absolute top-0 right-0 overflow-hidden mt-12 w-80 max-h-96 bg-white text-black rounded-lg shadow-xl border border-gray-200 flex flex-col z-50">
             </ul>
         </div>
         <div class="relative">
-            <button id="profile-img"
-                    class="w-10 h-10 bg-dark rounded-full flex items-center justify-center cursor-pointer">
-            </button>
+            <div class="w-12 h-12 bg-dark rounded-full flex items-center justify-center shadow-md">
+                <button id="profile-img"
+                        class="w-10 h-10 bg-darker rounded-full flex items-center justify-center cursor-pointer backdrop:blur-2xl">
+                </button>
+            </div>
             <ul id="profile-dropdown"
-                class="hidden overflow-hidden absolute top-0 right-0 mt-12 md:w-50 md:h-auto bg-white text-black rounded-lg shadow-lg flex flex-col gap-2 z-50">
+                class="hidden overflow-hidden absolute top-0 right-0 mt-12 md:w-50 md:h-auto bg-dark text-black rounded-lg shadow-lg flex flex-col gap-2 z-50">
             </ul>
         </div>
     </div>
 </nav>
 
-<section class="w-full min-h-screen p-4 md:p-8">
-    <div class="w-full max-w-6xl mx-auto bg-lighter shadow-lg border rounded-xl p-4 md:p-8">
-        <div class="mb-6">
-            <span class="text-sm text-soft-dark">Recorda que cuando cree tu perfil de artista, un administrador va a validar la informacion que enviaste</span>
-        </div>
-        <div class="mb-6">
-            <h1 class="text-2xl font-bold text-soft-dark mb-2">Crear Perfil de Artista</h1>
-            <p class="text-sm text-gray-600">Complete la información para crear su perfil de artista</p>
+<section class="w-full min-h-screen p-4 bg-darker">
+    <div class="w-full mx-auto flex flex-col rounded-lg overflow-hidden">
+
+        <div class="flex flex-row profile-gradient shadow-lg p-12 gap-12">
+            <div class="h-full self-center ">
+                <h1 class="text-4xl font-bold text-light opacity-80 drop-shadow-xl drop-shadow-[#242424]">
+                    Crear perfil de Artista
+                </h1>
+            </div>
         </div>
 
-        <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
-            <!-- Columna izquierda - Imagen -->
-            <div class="xl:col-span-4 flex flex-col px-2 md:px-4 border-b xl:border-b-0 xl:border-r border-[#2B7FFFFF] pb-6 xl:pb-0">
-                <!-- Foto de perfil -->
-                <div class="w-full mb-6 flex flex-col items-center">
-                    <div class="relative">
-                        <div class="w-48 h-48 md:w-58 md:h-58 overflow-hidden flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg">
-                            <div id="image-placeholder" class="flex flex-col items-center text-gray-400">
-                                <i data-lucide="image" class="w-12 h-12 mb-2"></i>
-                                <span class="text-sm">Imagen de perfil</span>
-                            </div>
-                            <img id="profile-image" src="" alt="Vista previa"
-                                 class="hidden w-full h-full object-cover"/>
+        <div class="flex flex-row profile-gradient shadow-lg p-12 gap-8">
+            <div class="flex flex-col gap-4">
+                <span class="text-lg font-bold text-light opacity-80 drop-shadow-xl drop-shadow-[#242424]">Foto de perfil</span>
+                <div class="w-80 h-80 relative">
+                    <img id="profile-image"
+                         src=""
+                         alt="Vista previa de imagen"
+                         class="w-full h-full rounded-md object-cover bg-darker overflow-hidden shadow-xl hidden"
+                    />
+                    <div id="image-placeholder"
+                         class="w-full h-full rounded-md bg-darker overflow-hidden shadow-xl flex items-center justify-center border-2 border-dashed border-gray-600">
+                        <div class="text-center">
+                            <i data-lucide="image" class="w-12 h-12 text-gray-400 mx-auto mb-2"></i>
+                            <p class="text-gray-400 text-sm">Selecciona una imagen</p>
                         </div>
-                        <button id="remove-image-btn"
-                                class="hidden absolute top-2 right-2 w-8 h-8 border rounded-full bg-[#333333] text-white opacity-30 hover:opacity-50 transition flex items-center justify-center cursor-pointer">
-                            <i data-lucide="x" class="w-4 h-4"></i>
-                        </button>
                     </div>
-                </div>
-
-                <!-- URL de imagen -->
-                <div class="w-full mb-4 flex flex-col">
-                    <label for="avatar-url-input" class="text-soft-dark font-regular mb-1 text-sm">URL de imagen de
-                        perfil</label>
-                    <input id="avatar-url-input"
-                           type="url"
-                           placeholder="https://ejemplo.com/imagen.jpg"
-                           class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                    <input id="image-input"
+                           type="file"
+                           accept="image/*"
+                           class="hidden"
+                    />
+                    <button id="select-image-btn"
+                            type="button"
+                            class="absolute inset-0 w-full h-full bg-transparent transition-all cursor-pointer rounded-md">
+                    </button>
+                    <button id="remove-image-btn"
+                            type="button"
+                            class="hidden absolute top-2 right-2 text-white cursor-pointer bg-darker opacity-60 hover:opacity-90 rounded-full w-8 h-8 flex items-center justify-center transition-all">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
                 </div>
             </div>
-
-            <!-- Columna derecha - Formulario -->
-            <div class="xl:col-span-8 flex flex-col px-2 md:px-4">
-                <form id="artist-profile-form">
-                    <!-- Información básica -->
-                    <div class="mb-6">
-                        <h3 class="text-lg font-semibold text-soft-dark mb-4">Información básica</h3>
-
-                        <div class="flex flex-col mb-4">
-                            <label class="text-soft-dark font-regular mb-1 text-sm">Nombre artístico *</label>
-                            <input id="artist-name-input"
-                                   type="text"
-                                   placeholder="Tu nombre como artista"
-                                   required
-                                   class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+            <div class="flex flex-col gap-4 w-full">
+                <span class="text-lg font-bold text-light opacity-80 drop-shadow-xl drop-shadow-[#242424]">Datos del artista</span>
+                <form>
+                    <div class="flex flex-row w-full mb-2">
+                        <div class="flex flex-col w-full gap-2">
+                            <label>Nombre de artista</label>
+                            <input
+                                    type="text"
+                                    id="artist-name"
+                                    placeholder="Nombre de artista"
+                                    class="bg-darker text-light rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
                         </div>
-
-                        <div class="flex flex-col mb-4">
-                            <label class="text-soft-dark font-regular mb-1 text-sm">Biografía</label>
-                            <textarea id="bio-input"
-                                      rows="4"
-                                      placeholder="Cuéntanos sobre tu música y tu historia..."
-                                      class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm resize-none"></textarea>
+                    </div>
+                    <div class="flex flex-row w-full mb-2 gap-2">
+                        <div class="flex flex-col w-full gap-2">
+                            <label>Bio</label>
+                            <textarea
+                                    type="text" id="artist-bio" cols="20"
+                                    placeholder="Breve descripcion del artista"
+                                    class="bg-darker text-light rounded-md p-2 w-full h-30 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"></textarea>
                         </div>
                     </div>
 
-                    <!-- Redes sociales -->
-                    <div class="mb-6">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-lg font-semibold text-soft-dark">Redes sociales</h3>
-                            <button type="button" id="add-social-btn"
-                                    class="text-sm px-3 py-1 bg-[#2B7FFFFF] text-white rounded hover:bg-[#2B7FFFAA] transition flex items-center gap-1">
-                                <i data-lucide="plus" class="w-4 h-4"></i>
-                                Agregar red social
+                    <div id="social-media-container" class="flex flex-col w-full mt-4 gap-2">
+                        <div class="w-full flex flex-row justify-between items-center content-center mb-2">
+                            <span class="text-lg font-bold text-light opacity-80 drop-shadow-xl drop-shadow-[#242424]">Foto de perfil</span>
+                            <button class="p-1 text-xs bg-blue-600 rounded-sm text-white hover:opacity-70 transition-all shadow-md">
+                                Agregar redes sociales
                             </button>
                         </div>
-                        <div id="social-media-container" class="flex flex-col gap-3">
-                            <p class="text-sm text-gray-500">No has agregado redes sociales aún</p>
+
+                        <div class="flex flex-col w-full gap-2">
+                            <label for="nombre-del-input">
+                                Nombre del input
+                            </label>
+                            <input
+                                    type="text"
+                                    id="nombre-del-input"
+                                    placeholder="Nombre del input"
+                                    class="bg-darker text-light rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
                         </div>
                     </div>
 
-                    <!-- Botones -->
-                    <div class="flex flex-col sm:flex-row justify-end gap-4">
-                        <button type="button" id="cancel-btn"
-                                class="shadow text-white w-full sm:w-[200px] p-2 bg-[#242424] rounded hover:bg-[#333333] transition text-sm">
-                            Cancelar
-                        </button>
-                        <button type="submit"
-                                class="shadow text-white w-full sm:w-[200px] p-2 bg-[#2B7FFFFF] rounded hover:bg-[#2B7FFFAA] transition text-sm">
-                            Crear perfil
-                        </button>
-                    </div>
                 </form>
             </div>
         </div>
     </div>
 </section>
+
 
 <script type="module" src="/src/main.js"></script>
 <script type="module">
@@ -148,10 +146,10 @@
     const artistProfileCreateHandler = new ArtistProfileCreateHandler();
 
     authHandler.subscribe(AuthGuard);
-    authHandler.subscribe(layoutHandler.setupLayout);
-    authHandler.subscribe(() => notificationHandler.init());
-    authHandler.subscribe((user) => artistProfileCreateHandler.init(user));
-    await authHandler.getUserProfile();
+    authHandler.subscribe(async (user) => await layoutHandler.setupLayout(user));
+    authHandler.subscribe(async (user) => await notificationHandler.init(user));
+    authHandler.subscribe(async (user) => await artistProfileCreateHandler.init(user));
+    authHandler.getUserProfile();
     window.refreshIcons();
 </script>
 </body>

@@ -19,6 +19,11 @@ export const dropDownMenuItems = [
         requiredRoles: 'visitant|artist|admin'
     },
     {
+        text: 'Configuracion',
+        href: './configure',
+        requiredRoles: 'visitant|artist|admin'
+    },
+    {
         text: 'Mis eventos',
         href: './my-events',
         requiredRoles: 'artist|admin'

@@ -13,8 +13,8 @@
         </a>
     </div>
 </nav>
-<section class="w-full min-h-screen md:p-8">
-    <div class="w-full max-w-6xl mx-auto flex flex-col min-h-[100dvh] bg-lighter shadow-lg border md:rounded-xl p-4 md:p-8">
+<section class="w-full min-h-screen xl:h-[calc(100dvh-10rem)] md:p-8">
+    <div class="w-full max-w-6xl mx-auto flex flex-col h-full xl:h-[calc(100dvh-10rem)] bg-lighter shadow-lg border md:rounded-xl p-4 md:p-8">
         <!-- Layout responsive usando flexbox -->
         <div class="flex flex-col xl:flex-row xl:items-center xl:content-center xl:justify-center xl:my-auto gap-6 h-full">
             <!-- Contenedor izquierdo -->
@@ -37,11 +37,16 @@
                     <div class="flex flex-row w-full gap-4">
                         <button class="w-full border border-[#333333] rounded-4xl text-black text-sm md:text-md py-2 px-3 md:px-4 flex flex-row justify-center items-center content-center gap-2 hover:opacity-90 hover:bg-[#333333] hover:text-white transition">
                             <div class="w-4 h-4 md:w-5 md:h-5 flex-shrink-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: block;">
-                                    <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
-                                    <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
-                                    <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
-                                    <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"
+                                     xmlns:xlink="http://www.w3.org/1999/xlink" style="display: block;">
+                                    <path fill="#EA4335"
+                                          d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+                                    <path fill="#4285F4"
+                                          d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+                                    <path fill="#FBBC05"
+                                          d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+                                    <path fill="#34A853"
+                                          d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
                                     <path fill="none" d="M0 0Wh48v48H0z"></path>
                                 </svg>
                             </div>
@@ -50,7 +55,8 @@
                     </div>
 
                     <div class="flex flex-row w-full justify-center gap-4">
-                        <button id="show-credentials-form" class="w-full border border-[#333333] rounded-4xl text-black text-sm md:text-md py-2 px-3 md:px-4 flex flex-row justify-center items-center content-center gap-2 hover:opacity-90 hover:bg-[#333333] hover:text-white transition">
+                        <button id="show-credentials-form"
+                                class="w-full border border-[#333333] rounded-4xl text-black text-sm md:text-md py-2 px-3 md:px-4 flex flex-row justify-center items-center content-center gap-2 hover:opacity-90 hover:bg-[#333333] hover:text-white transition">
                             <span class="text-xs md:text-sm">Registrarme con usuario y contraseña</span>
                         </button>
                     </div>
@@ -64,6 +70,15 @@
                 </div>
 
                 <form id="credentials-form" class="w-full mt-6 hidden">
+                    <div class="w-full mb-4 flex flex-row justify-between items-center">
+                        <h2 class="text-lg font-semibold text-soft-dark">Crear cuenta</h2>
+                        <button
+                                id="close-credentials-form"
+                                type="button"
+                                class="hidden w-8 h-8 border rounded-full bg-[#333333] text-white opacity-30 hover:opacity-50 transition flex items-center justify-center cursor-pointer">
+                            <i data-lucide="x" class="w-4 h-4"></i>
+                        </button>
+                    </div>
                     <div class="w-full mb-4 flex flex-col items-start">
                         <h2 class="text-lg font-semibold text-soft-dark">Registrarme</h2>
                     </div>
@@ -72,32 +87,50 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div class="flex flex-col">
                             <label class="text-soft-dark font-regular mb-1 text-sm">Nombre</label>
-                            <input type="text" placeholder="Tu nombre" class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                            <input type="text" placeholder="Tu nombre"
+                                   class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
                         </div>
                         <div class="flex flex-col">
                             <label class="text-soft-dark font-regular mb-1 text-sm">Apellido</label>
-                            <input type="text" placeholder="Tu apellido" class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                            <input type="text" placeholder="Tu apellido"
+                                   class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
                         </div>
                     </div>
 
                     <div class="flex flex-col mb-4">
                         <label class="text-soft-dark font-regular mb-1 text-sm">Teléfono</label>
-                        <input type="text" placeholder="Sin código de área" class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                        <input type="text" placeholder="Sin código de área"
+                               class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
                     </div>
 
                     <div class="flex flex-col mb-4">
                         <label class="text-soft-dark font-regular mb-1 text-sm">Email</label>
-                        <input type="email" placeholder="tu@email.com" class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                        <input type="email" placeholder="tu@email.com"
+                               class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
                     </div>
 
                     <div class="flex flex-col mb-4">
-                        <label for="new-password-input" class="text-soft-dark font-regular mb-1 text-sm">Contraseña nueva</label>
-                        <input id="new-password-input" type="password" placeholder="Ingrese su nueva contraseña" class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                        <label for="password" class="text-soft-dark font-regular mb-1 text-sm">Contraseña</label>
+                        <div class="relative">
+                            <input id="password" type="password" placeholder="Ingrese su contraseña"
+                                   class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm pr-10"/>
+                            <button id="toggle-password" type="button"
+                                    class="absolute right-2 top-1/2 transform -translate-y-1/2 text-soft-dark hover:text-darker">
+                                <i data-lucide="eye-off" class="w-4 h-4"></i>
+                            </button>
+                        </div>
                     </div>
 
                     <div class="flex flex-col mb-4">
-                        <label for="repeat-new-password-input" class="text-soft-dark font-regular mb-1 text-sm">Repetir contraseña nueva</label>
-                        <input id="repeat-new-password-input" type="password" placeholder="Repita su nueva contraseña" class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                        <label for="password" class="text-soft-dark font-regular mb-1 text-sm">Repetir contraseña</label>
+                        <div class="relative">
+                            <input id="password-repeat" type="password" placeholder="Repita su contraseña"
+                                   class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm pr-10"/>
+                            <button id="toggle-repeat-password" type="button"
+                                    class="absolute right-2 top-1/2 transform -translate-y-1/2 text-soft-dark hover:text-darker">
+                                <i data-lucide="eye-off" class="w-4 h-4"></i>
+                            </button>
+                        </div>
                     </div>
 
                     <div class="flex flex-row w-full justify-center gap-4 mb-4">
@@ -108,7 +141,8 @@
                     </div>
 
                     <div class="flex flex-row w-full justify-center gap-4">
-                        <button class="w-full rounded-4xl bg-darker text-white text-sm py-2 px-4 flex flex-row justify-center items-center gap-2 hover:opacity-90" type="submit">
+                        <button class="w-full rounded-4xl bg-darker text-white text-sm py-2 px-4 flex flex-row justify-center items-center gap-2 hover:opacity-90"
+                                type="submit">
                             <span class="font-semibold">Registrarme</span>
                         </button>
                     </div>
@@ -121,41 +155,64 @@
 <script type="module">
     import RegisterHandler from "/src/handlers/register.handler.js";
 
-    // Elementos para mostrar/ocultar formulario
     const showFormBtn = document.getElementById('show-credentials-form');
+    const closeFormBtn = document.getElementById('close-credentials-form');
     const credentialsForm = document.getElementById("credentials-form");
-
     const goToLogin = document.getElementById("go-to-login");
 
-    let openForm = false;
-
     showFormBtn?.addEventListener("click", (e) => {
-        openForm = !openForm;
-        if (openForm) {
-            credentialsForm.classList.remove("hidden");
-            goToLogin.classList.add("hidden");
-        } else {
-            credentialsForm.classList.add("hidden");
-            goToLogin.classList.remove("hidden");
-        }
+        handleFormDisplay(true);
+    });
+
+    closeFormBtn?.addEventListener("click", (e) => {
+        handleFormDisplay(false);
     })
 
+    const handleFormDisplay = (show) => {
+        if (show) {
+            // Ocultamos elementos originales
+            showFormBtn.classList.add("hidden");
+            goToLogin.classList.add("hidden");
 
-
-    /*
-    document.addEventListener('click', (e) => {
-        if (e.target.closest('#hide-credentials-form')) {
+            // Mostramos el formulario y el botón de cerrar
+            closeFormBtn.classList.remove("hidden");
+            credentialsForm.classList.remove("hidden");
+        } else {
+            //Ocultamos el formulario y el botón de cerrar
             credentialsForm.classList.add("hidden");
+            closeFormBtn.classList.add("hidden");
 
-            // Mostrar botones de registro social nuevamente
-            showCredentialsBtn.parentElement.style.display = "flex";
-            document.querySelector('button:has(span:contains("Google"))').parentElement.style.display = "flex";
-
-            // Limpiar campos del formulario
-            credentialsForm.reset();
+            // Mostramos los elementos originales
+            goToLogin.classList.remove("hidden");
+            showFormBtn.classList.remove("hidden");
         }
+    }
+
+    const toggleBtn = document.getElementById("toggle-password");
+    const passwordInput = document.getElementById("password");
+    const toggleRepeatBtn = document.getElementById("toggle-repeat-password");
+    const passwordRepeatInput = document.getElementById("password-repeat");
+    toggleBtn?.addEventListener("click", () => {
+        handleShowInput(passwordInput, toggleBtn);
     });
-*/
+
+    toggleRepeatBtn.addEventListener("click", () => {
+        handleShowInput(passwordRepeatInput, toggleRepeatBtn);
+    })
+
+    const handleShowInput = (input, toggleButton) => {
+        if (input.type === "password") {
+            input.type = "text";
+            toggleButton.innerHTML = `<i data-lucide="eye" class="w-4 h-4"></i>`;
+        } else {
+            input.type = "password";
+            toggleButton.innerHTML = `<i data-lucide="eye-off" class="w-4 h-4"></i>`;
+        }
+        if (window.refreshIcons) {
+            window.refreshIcons()
+        }
+    }
+
     new RegisterHandler();
 </script>
 </body>

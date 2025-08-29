@@ -10,7 +10,7 @@ class SocialMediaService {
    }
 
    async getSocialMediaByType(type){
-         return await httpAdapter.get(`/social-media/${type}`);
+         return await httpAdapter.get(`/social-media/all/types/${type}`);
    }
 }
 
