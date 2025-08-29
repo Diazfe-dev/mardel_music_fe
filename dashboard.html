@@ -75,7 +75,6 @@
         </div>
 
 
-
     </div>
 </section>
 
@@ -99,7 +98,7 @@
     authHandler.subscribe(AuthGuard);
     authHandler.subscribe(layoutHandler.setupLayout);
     authHandler.subscribe(() => {
-        setTimeout(() => notificationHandler.init(), 100);
+        setTimeout(() => notificationHandler.init(), 100)
     });
 
     const logoutBtn = document.getElementById('logout-btn');

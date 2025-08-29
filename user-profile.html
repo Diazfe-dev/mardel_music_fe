@@ -42,28 +42,39 @@
     <div class="w-full mx-auto flex flex-col rounded-lg overflow-hidden">
 
         <div class="flex flex-row profile-gradient shadow-lg p-12 gap-12 ">
-            <div class="w-60 h-60">
-                <img id="profile-image"
-                     src="http://localhost:8080/uploads/profile_image-1756347668046.jpg"
-                     alt="Foto de perfil del usuario"
-                     class="w-full h-full rounded-full object-cover shadow-lg bg-darker drop-shadow-xl drop-shadow-[#242424]"/>
+            <div class="w-60 h-60" id="user-avatar-container">
+                <div class="w-60 h-60 bg-dark rounded-full flex items-center justify-center shadow-md relative group">
+                    <img
+                            id="user-avatar-image"
+                            src=""
+                            alt=""
+                            class="w-full h-full rounded-full object-cover shadow-lg bg-darker drop-shadow-xl drop-shadow-[#242424]"
+                    />
+                    <div id="user-avatar-uplaod-input"
+                         class="absolute bottom-4 right-4 w-12 h-12 bg-dark flex items-center justify-center rounded-full shadow-lg cursor-pointer opacity-0 translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                        <i data-lucide="square-pen"></i>
+                    </div>
+                </div>
+                <input id="upload-profile-image-input" type="file" class="invisible"/>
             </div>
 
             <div class="h-full self-center">
                 <span class="text-lg font-medium text-light opacity-67 mb-4 drop-shadow-xl drop-shadow-[#242424">Perfil</span>
-                <h1 class="text-6xl font-bold text-light opacity-80 drop-shadow-xl drop-shadow-[#242424">Facundo Diaz</h1>
+                <h1 id="user-name"
+                    class="text-6xl font-bold text-light opacity-80 drop-shadow-xl drop-shadow-[#242424"></h1>
             </div>
         </div>
 
         <div class="flex flex-col bg-dark drop-shadow-xl drop-shadow-[#242424] px-12 py-4 ">
             <div class="h-full w-full mb-8 flex flex-row justify-between items-center">
-                <h2 class="text-3xl font-bold text-light opacity-80 drop-shadow-xl drop-shadow-[#242424]">Artistas que sigo</h2>
+                <h2 class="text-3xl font-bold text-light opacity-80 drop-shadow-xl drop-shadow-[#242424]">Artistas que
+                    sigo</h2>
                 <span class="text-sm font-bold text-light opacity-70 hover:opacity-90 transition-all drop-shadow-xl drop-shadow-[#242424] cursor-pointer">Ver todos</span>
             </div>
 
             <div class="flex flex-row gap-8 ">
                 <div class="w-50 h-70 bg-dark rounded-md flex flex-col p-4 profile-gradient hover:shadow-lg hover:inset-shadow-sm transition-all">
-                    <div class="flex flex-row justify-center items-center content-center drop-shadow-xl drop-shadow-[#242424]" >
+                    <div class="flex flex-row justify-center items-center content-center drop-shadow-xl drop-shadow-[#242424]">
                         <img class="w-30 h-30 rounded-full object-cover shadow-xl"
                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVwqFuoeC9GphTZhuNGzSpQAeUZuAetDGEyw&s"/>
                     </div>
@@ -74,7 +85,7 @@
                 </div>
 
                 <div class="w-50 h-70 bg-dark rounded-md flex flex-col p-4 profile-gradient hover:shadow-lg hover:inset-shadow-sm transition-all">
-                    <div class="flex flex-row justify-center items-center content-center drop-shadow-xl drop-shadow-[#242424]" >
+                    <div class="flex flex-row justify-center items-center content-center drop-shadow-xl drop-shadow-[#242424]">
                         <img class="w-30 h-30 rounded-full object-cover shadow-xl"
                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoSY24NTb73wfbLvF0foXka4IJBCa92jv1_g&s"/>
                     </div>
@@ -85,7 +96,7 @@
                 </div>
 
                 <div class="w-50 h-70 bg-dark rounded-md flex flex-col p-4 profile-gradient hover:shadow-lg hover:inset-shadow-sm transition-all">
-                    <div class="flex flex-row justify-center items-center content-center drop-shadow-xl drop-shadow-[#242424]" >
+                    <div class="flex flex-row justify-center items-center content-center drop-shadow-xl drop-shadow-[#242424]">
                         <img class="w-30 h-30 rounded-full object-cover shadow-xl"
                              src="https://i.scdn.co/image/ab67616d0000b2734ae1c4c5c45aabe565499163"/>
                     </div>

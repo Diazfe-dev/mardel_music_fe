@@ -11,17 +11,17 @@ export const dropDownMenuItems = [
     {
         text: 'Mi perfil',
         href: './user-profile',
-        requiredRoles: 'visitant|artist|admin'
+        requiredRoles: 'user|artist|admin'
     },
     {
         text: 'Perfil de artista',
         href: './artist-profile',
-        requiredRoles: 'visitant|artist|admin'
+        requiredRoles: 'user|artist|admin'
     },
     {
         text: 'Configuracion',
         href: './configure',
-        requiredRoles: 'visitant|artist|admin'
+        requiredRoles: 'user|artist|admin'
     },
     {
         text: 'Mis eventos',
