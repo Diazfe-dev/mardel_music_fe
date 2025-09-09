@@ -18,7 +18,6 @@ class RegisterHandler {
     init() {
         this.form = document.getElementById('credentials-form');
         if (this.form) {
-            // Seleccionar inputs por posición ya que no tienen IDs
             const inputs = this.form.querySelectorAll('input');
             this.nameInput = inputs[0]; // Primer input (Nombre)
             this.lastNameInput = inputs[1]; // Segundo input (Apellido)

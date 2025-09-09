@@ -26,14 +26,14 @@
                 class="hidden absolute top-0 right-0 overflow-hidden mt-12 w-80 max-h-96 bg-white text-black rounded-lg shadow-xl border border-gray-200 flex flex-col z-50">
             </ul>
         </div>
-        <div class="relative">
+        <div class="relative" x-data="dropdown">
             <div class="w-12 h-12 bg-dark rounded-full flex items-center justify-center shadow-md">
-                <button id="profile-img"
+                <button id="profile-img" @click="toggle()"
                         class="w-10 h-10 bg-darker rounded-full flex items-center justify-center cursor-pointer backdrop:blur-2xl">
                 </button>
             </div>
-            <ul id="profile-dropdown"
-                class="hidden overflow-hidden absolute top-0 right-0 mt-12 md:w-50 md:h-auto bg-dark text-black rounded-lg shadow-lg flex flex-col gap-2 z-50">
+            <ul id="profile-dropdown" x-show="open" @click.outside="toggle"
+                class="overflow-hidden absolute top-0 right-0 mt-12 md:w-50 md:h-auto bg-dark text-black rounded-lg shadow-lg flex flex-col gap-2 z-50">
             </ul>
         </div>
     </div>
@@ -88,6 +88,7 @@
 <script type="module" src="/src/main.js"></script>
 <script type="module">
     import authHandler from "/src/handlers/auth.handler.js";
+    /**
     import LayoutHandler from "/src/handlers/layout-handler.js";
     import NotificationHandler from "/src/handlers/notification.handler.js";
     import AuthGuard from "/src/utils/auth.guard.js";
@@ -109,6 +110,7 @@
     }
 
     await authHandler.getUserProfile();
+     **/
 </script>
 </body>
 </html>
