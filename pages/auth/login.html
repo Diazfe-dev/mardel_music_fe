@@ -5,38 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Iniciar Sesión - MardelMusic</title>
 </head>
-<body class="flex flex-col h-screen md:w-full xl:h-screen bg-light">
+<body class="flex flex-col bg-light md:w-full h-screen xl:h-screen">
 <nav class="flex flex-row items-center p-8 h-20">
-    <div class="grow justify-start">
-        <a href="./index" class="text-2xl font-bold text-black">
+    <div class="justify-start grow">
+        <a href="../../index.html" class="font-bold text-black text-2xl">
             MardelMusic
         </a>
     </div>
 </nav>
-<section class="w-full min-h-screen xl:h-[calc(100dvh-10rem)] md:p-8">
-    <div class="w-full max-w-6xl mx-auto flex flex-col h-full xl:h-[calc(100dvh-10rem)] bg-lighter shadow-lg border md:rounded-xl p-4 md:p-8">
+<section class="md:p-8 w-full xl:h-[calc(100dvh-10rem)] min-h-screen">
+    <div class="flex flex-col bg-lighter shadow-lg mx-auto p-4 md:p-8 border md:rounded-xl w-full max-w-6xl h-full xl:h-[calc(100dvh-10rem)]">
         <!-- Layout responsive usando flexbox -->
-        <div class="h-auto my-auto flex flex-col xl:flex-row xl:items-center xl:content-center xl:justify-center xl:my-auto gap-6">
+        <div class="flex xl:flex-row flex-col xl:justify-center xl:items-center xl:content-center gap-6 my-auto xl:my-auto h-auto">
             <!-- Contenedor izquierdo -->
-            <div class="flex-1 xl:max-w-md flex flex-col justify-center gap-4 px-2 md:px-4">
-                <h1 class="text-2xl md:text-3xl font-semibold text-soft-dark">
+            <div class="flex flex-col flex-1 justify-center gap-4 px-2 md:px-4 xl:max-w-md">
+                <h1 class="font-semibold text-soft-dark text-2xl md:text-3xl">
                     Bienvenido de vuelta
                 </h1>
-                <h2 class="text-lg md:text-xl font-semibold text-soft-dark opacity-80">
+                <h2 class="opacity-80 font-semibold text-soft-dark text-lg md:text-xl">
                     Inicia sesión para continuar disfrutando de tu música favorita.
                 </h2>
             </div>
 
             <!-- Contenedor derecho -->
-            <div class="flex-1 xl:max-w-md flex flex-col justify-center gap-4 px-2 md:px-4">
+            <div class="flex flex-col flex-1 justify-center gap-4 px-2 md:px-4 xl:max-w-md">
                 <div class="flex flex-col gap-4">
-                    <div class="w-full mb-2 flex flex-col items-center content-center justify-center">
-                        <h2 class="text-xl md:text-2xl font-semibold text-center text-soft-dark">Iniciar Sesión</h2>
+                    <div class="flex flex-col justify-center items-center content-center mb-2 w-full">
+                        <h2 class="font-semibold text-soft-dark text-xl md:text-2xl text-center">Iniciar Sesión</h2>
                     </div>
 
-                    <div class="flex flex-row w-full gap-4">
-                        <button class="w-full border border-[#333333] rounded-4xl text-black text-sm md:text-md py-2 px-3 md:px-4 flex flex-row justify-center items-center content-center gap-2 hover:opacity-90 hover:bg-[#333333] hover:text-white transition">
-                            <div class="w-4 h-4 md:w-5 md:h-5 flex-shrink-0">
+                    <div class="flex flex-row gap-4 w-full">
+                        <button class="flex flex-row justify-center items-center content-center gap-2 hover:bg-[#333333] hover:opacity-90 px-3 md:px-4 py-2 border border-[#333333] rounded-4xl w-full text-black md:text-md hover:text-white text-sm transition">
+                            <div class="flex-shrink-0 w-4 md:w-5 h-4 md:h-5">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"
                                      xmlns:xlink="http://www.w3.org/1999/xlink" style="display: block;">
                                     <path fill="#EA4335"
@@ -54,64 +54,64 @@
                         </button>
                     </div>
 
-                    <div class="flex flex-row w-full justify-center gap-4">
+                    <div class="flex flex-row justify-center gap-4 w-full">
                         <button id="show-credentials-form"
-                                class="w-full border border-[#333333] rounded-4xl text-black text-sm md:text-md py-2 px-3 md:px-4 flex flex-row justify-center items-center content-center gap-2 hover:opacity-90 hover:bg-[#333333] hover:text-white transition">
+                                class="flex flex-row justify-center items-center content-center gap-2 hover:bg-[#333333] hover:opacity-90 px-3 md:px-4 py-2 border border-[#333333] rounded-4xl w-full text-black md:text-md hover:text-white text-sm transition">
                             <span class="text-xs md:text-sm">Iniciar sesión con usuario y contraseña</span>
                         </button>
                     </div>
 
-                    <div id="go-to-register" class="flex flex-row w-full justify-center gap-4">
-                        <span class="border-b font-semibold text-center text-soft-dark opacity-80 text-sm">
+                    <div id="go-to-register" class="flex flex-row justify-center gap-4 w-full">
+                        <span class="opacity-80 border-b font-semibold text-soft-dark text-sm text-center">
                             No tengo cuenta
-                            <a class="font-bold pointer" href="./register">registrarme</a>
+                            <a class="font-bold pointer" href="./register.html">registrarme</a>
                         </span>
                     </div>
                 </div>
 
-                <form id="credentials-form" class="w-full mt-6 hidden">
-                    <div class="w-full mb-4 flex flex-row justify-between items-center">
-                        <h2 class="text-lg font-semibold text-soft-dark">Iniciar Sesión</h2>
+                <form id="credentials-form" class="hidden mt-6 w-full">
+                    <div class="flex flex-row justify-between items-center mb-4 w-full">
+                        <h2 class="font-semibold text-soft-dark text-lg">Iniciar Sesión</h2>
                             <button
                                     id="close-credentials-form"
                                     type="button"
-                                    class="hidden w-8 h-8 border rounded-full bg-[#333333] text-white opacity-30 hover:opacity-50 transition flex items-center justify-center cursor-pointer">
+                                    class="hidden flex justify-center items-center bg-[#333333] opacity-30 hover:opacity-50 border rounded-full w-8 h-8 text-white transition cursor-pointer">
                                 <i data-lucide="x" class="w-4 h-4"></i>
                             </button>
                     </div>
 
                     <div class="flex flex-col mb-4">
-                        <label class="text-soft-dark font-regular mb-1 text-sm">Email</label>
+                        <label class="mb-1 font-regular text-soft-dark text-sm">Email</label>
                         <input type="email" placeholder="tu@email.com"
-                               class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm"/>
+                               class="bg-light shadow p-2 rounded w-full text-soft-dark text-sm"/>
                     </div>
 
                     <div class="flex flex-col mb-4">
-                        <label for="password" class="text-soft-dark font-regular mb-1 text-sm">Contraseña</label>
+                        <label for="password" class="mb-1 font-regular text-soft-dark text-sm">Contraseña</label>
                         <div class="relative">
                             <input id="password" type="password" placeholder="Ingrese su contraseña"
-                                   class="shadow p-2 w-full text-soft-dark rounded bg-light text-sm pr-10"/>
+                                   class="bg-light shadow p-2 pr-10 rounded w-full text-soft-dark text-sm"/>
                             <button id="toggle-password" type="button"
-                                    class="absolute right-2 top-1/2 transform -translate-y-1/2 text-soft-dark hover:text-darker">
+                                    class="top-1/2 right-2 absolute text-soft-dark hover:text-darker -translate-y-1/2 transform">
                                 <i data-lucide="eye-off" class="w-4 h-4"></i>
                             </button>
                         </div>
                     </div>
 
-                    <div class="flex flex-row w-full justify-end mb-4">
-                        <a class="text-sm text-soft-dark opacity-80 hover:opacity-100 font-semibold" href="#">¿Olvidaste
+                    <div class="flex flex-row justify-end mb-4 w-full">
+                        <a class="opacity-80 hover:opacity-100 font-semibold text-soft-dark text-sm" href="#">¿Olvidaste
                             tu contraseña?</a>
                     </div>
 
-                    <div class="flex flex-row w-full justify-center gap-4 mb-4">
-                        <span class="border-b font-semibold text-center text-soft-dark opacity-80 text-sm">
+                    <div class="flex flex-row justify-center gap-4 mb-4 w-full">
+                        <span class="opacity-80 border-b font-semibold text-soft-dark text-sm text-center">
                             No tengo cuenta
-                            <a class="font-bold pointer" href="./register">registrarme</a>
+                            <a class="font-bold pointer" href="./register.html">registrarme</a>
                         </span>
                     </div>
 
-                    <div class="flex flex-row w-full justify-center gap-4">
-                        <button class="w-full rounded-4xl bg-darker text-white text-sm py-2 px-4 flex flex-row justify-center items-center gap-2 hover:opacity-90"
+                    <div class="flex flex-row justify-center gap-4 w-full">
+                        <button class="flex flex-row justify-center items-center gap-2 bg-darker hover:opacity-90 px-4 py-2 rounded-4xl w-full text-white text-sm"
                                 type="submit">
                             <span class="font-semibold">Iniciar Sesión</span>
                         </button>

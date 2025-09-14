@@ -18,7 +18,6 @@ class RegisterHandler {
     init() {
         this.form = document.getElementById('credentials-form');
         if (this.form) {
-            // Seleccionar inputs por posición ya que no tienen IDs
             const inputs = this.form.querySelectorAll('input');
             this.nameInput = inputs[0]; // Primer input (Nombre)
             this.lastNameInput = inputs[1]; // Segundo input (Apellido)
@@ -56,7 +55,7 @@ class RegisterHandler {
             if (result.success) {
                 this.showSuccess('Registro exitoso. Redirigiendo...');
                 setTimeout(() => {
-                    window.location.href = '/dashboard.html';
+                    window.location.href = '/pages/dashboard.html';
                 }, 1500);
             } else {
                 this.showError(result.error.message);

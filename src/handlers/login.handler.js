@@ -40,7 +40,7 @@ class LoginHandler {
             if (result.success) {
                 this.showSuccess('Inicio de sesión exitoso');
                 setTimeout(() => {
-                    window.location.href = '/dashboard.html'
+                    window.location.href = '/pages/dashboard.html'
                 }, 1500);
             } else {
                 this.showError(result.error.message);

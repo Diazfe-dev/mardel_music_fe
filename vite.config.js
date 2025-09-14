@@ -9,12 +9,22 @@ export default defineConfig({
     build: {
         rollupOptions: {
             input: {
+                // Página principal
                 main: 'index.html',
-                login: 'login.html',
-                register: 'register.html',
-                dashboard: 'dashboard.html',
-                userProfile: 'user-artist.html',
-                artistProfile: 'artist-artist.html',
+                
+                // Páginas de autenticación
+                'auth-login': 'pages/auth/login.html',
+                'auth-register': 'pages/auth/register.html',
+                
+                // Dashboard
+                dashboard: 'pages/dashboard.html',
+                
+                // Perfiles de usuario
+                'user-profile': 'pages/user/profile.html',
+                'artist-profile': 'pages/artist/profile.html',
+                
+                // Páginas de error
+                '404': 'pages/404.html'
             },
             external: [/\.(jpg|jpeg|png|gif|webp)$/]
         }

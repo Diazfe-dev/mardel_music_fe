@@ -9,9 +9,10 @@ class AuthHandler {
 
     async getUserProfile() {
         const response = await userService.getCurrentUser();
+
         if (response.success) {
-            this.userObserver.notify(response.data.user);
-            return response.data.user;
+            this.userObserver.notify(response.data);
+            return response.data;
         } else {
             throw new Error(response.error.message);
         }

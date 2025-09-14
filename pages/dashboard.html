@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - MardelMusic</title>
+</head>
+
+<body class="flex flex-col bg-darker md:w-full h-full">
+    <nav class="flex flex-row items-center bg-transparent p-8 h-20">
+        <div class="justify-start grow">
+            <a href="../dashboard.html" class="font-bold text-light text-2xl">
+                MardelMusic
+            </a>
+        </div>
+        <div class="relative flex justify-end items-center gap-4 grow-1">
+            <div class="relative flex justify-center items-center bg-dark shadow-md rounded-full w-8 h-8">
+                <button id="notification-bell"
+                    class="flex justify-center items-center bg-darker opacity-50 hover:opacity-100 backdrop-blur-2xl rounded-full w-8 h-8 text-[#fefefe] transition cursor-pointer">
+                    <i data-lucide="bell"></i>
+                </button>
+                <div id="notification-badge"
+                    class="hidden -top-1 -right-1 absolute flex justify-center items-center bg-[#2B7FFFFF] px-1 rounded-full min-w-[20px] h-5 font-bold text-white text-xs">
+                </div>
+                <ul id="notification-dropdown"
+                    class="hidden top-0 right-0 z-50 absolute flex flex-col bg-white shadow-xl mt-12 border border-gray-200 rounded-lg w-80 max-h-96 overflow-hidden text-black">
+                </ul>
+            </div>
+            <div class="relative">
+                <div class="flex justify-center items-center bg-dark shadow-md rounded-full w-12 h-12">
+                    <button id="profile-img"
+                        class="flex justify-center items-center bg-darker backdrop:blur-2xl rounded-full w-10 h-10 cursor-pointer">
+                    </button>
+                </div>
+                <ul id="profile-dropdown"
+                    class="hidden top-0 right-0 z-50 absolute flex flex-col gap-2 bg-dark shadow-lg mt-12 rounded-lg md:w-50 md:h-auto overflow-hidden text-black">
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="bg-darker p-4 w-full min-h-screen">
+        <div class="flex flex-col mx-auto rounded-lg w-full overflow-hidden">
+            <!-- Header del Dashboard -->
+            <div class="relative flex flex-row gap-12 shadow-lg p-12 profile-gradient">
+                <div class="self-center h-full">
+                    <h1 class="opacity-80 drop-shadow-[#242424] drop-shadow-xl font-bold text-light text-6xl">Bienvenido
+                    </h1>
+                    <p class="opacity-70 drop-shadow-[#242424] drop-shadow-xl mt-4 text-light text-xl">
+                        Explora eventos, descubre artistas y conecta con la música
+                    </p>
+                </div>
+            </div>
+
+            <!-- Sección de Actividad Reciente -->
+            <div class="flex flex-col drop-shadow-[#242424] drop-shadow-xl px-12 py-8 profile-gradient">
+                <div class="flex flex-row justify-between items-center mb-8 w-full h-full">
+                    <h2 class="opacity-80 drop-shadow-[#242424] drop-shadow-xl font-bold text-light text-3xl">Actividad
+                        reciente</h2>
+                    <span
+                        class="opacity-70 hover:opacity-90 drop-shadow-[#242424] drop-shadow-xl font-bold text-light text-sm transition-all cursor-pointer">Ver
+                        historial</span>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <!-- Items de actividad placeholder -->
+                    <div class="flex flex-row items-center gap-4 bg-darker p-4 rounded-lg">
+                        <div class="flex justify-center items-center bg-blue-600 rounded-full w-12 h-12">
+                            <i data-lucide="music" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-medium text-light">Te has unido a MardelMusic</p>
+                            <p class="text-gray-400 text-sm">Bienvenido a la plataforma musical</p>
+                        </div>
+                        <span class="text-gray-500 text-sm">Hoy</span>
+                    </div>
+
+                    <div class="flex flex-row items-center gap-4 bg-darker opacity-50 p-4 rounded-lg">
+                        <div class="flex justify-center items-center bg-gray-600 rounded-full w-12 h-12">
+                            <i data-lucide="calendar" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-medium text-light">Próximas actividades</p>
+                            <p class="text-gray-400 text-sm">Se mostrarán aquí</p>
+                        </div>
+                        <span class="text-gray-500 text-sm">Próximamente</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de Eventos destacados -->
+            <div class="flex flex-col drop-shadow-[#242424] drop-shadow-xl px-12 py-8 profile-gradient">
+                <div class="flex flex-row justify-between items-center mb-8 w-full h-full">
+                    <h2 class="opacity-80 drop-shadow-[#242424] drop-shadow-xl font-bold text-light text-3xl">Eventos
+                        destacados</h2>
+                    <span
+                        class="opacity-70 hover:opacity-90 drop-shadow-[#242424] drop-shadow-xl font-bold text-light text-sm transition-all cursor-pointer">Ver
+                        todos</span>
+                </div>
+
+                <div class="flex flex-row gap-8 pb-4 overflow-x-auto">
+                    <!-- Card de evento placeholder -->
+                    <div
+                        class="hover:inset-shadow-sm flex flex-col bg-darker hover:shadow-lg p-6 rounded-md min-w-80 h-60 transition-all profile-gradient">
+                        <div class="flex justify-center items-center bg-gray-700 mb-4 rounded-lg w-full h-32">
+                            <i data-lucide="calendar" class="w-8 h-8 text-gray-400"></i>
+                        </div>
+                        <h3 class="mb-2 font-bold text-light text-lg">Evento Ejemplo</h3>
+                        <p class="mb-2 text-gray-300 text-sm">Descripción del evento musical</p>
+                        <span class="text-blue-400 text-sm">15 Dec 2024</span>
+                    </div>
+
+                    <!-- Se pueden agregar más cards aquí -->
+                    <div
+                        class="hover:inset-shadow-sm flex flex-col bg-darker opacity-50 hover:shadow-lg p-6 rounded-md min-w-80 h-60 transition-all profile-gradient">
+                        <div class="flex justify-center items-center bg-gray-700 mb-4 rounded-lg w-full h-32">
+                            <i data-lucide="plus" class="w-8 h-8 text-gray-400"></i>
+                        </div>
+                        <h3 class="mb-2 font-bold text-light text-lg">Próximamente</h3>
+                        <p class="text-gray-300 text-sm">Más eventos serán agregados</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de Artistas Recomendados -->
+            <div class="flex flex-col drop-shadow-[#242424] drop-shadow-xl px-12 py-8 profile-gradient">
+                <div class="flex flex-row justify-between items-center mb-8 w-full h-full">
+                    <h2 class="opacity-80 drop-shadow-[#242424] drop-shadow-xl font-bold text-light text-3xl">Artistas
+                        recomendados</h2>
+                    <span
+                        class="opacity-70 hover:opacity-90 drop-shadow-[#242424] drop-shadow-xl font-bold text-light text-sm transition-all cursor-pointer">Ver
+                        todos</span>
+                </div>
+
+                <div class="flex flex-row gap-8 pb-4 overflow-x-auto">
+                    <!-- Card de artista placeholder -->
+                    <div
+                        class="hover:inset-shadow-sm flex flex-col bg-darker hover:shadow-lg p-6 rounded-md min-w-64 h-72 transition-all profile-gradient">
+                        <div class="flex justify-center items-center bg-gray-700 mx-auto mb-4 rounded-full w-24 h-24">
+                            <i data-lucide="user" class="w-8 h-8 text-gray-400"></i>
+                        </div>
+                        <h3 class="mb-2 font-bold text-light text-lg text-center">Artista Ejemplo</h3>
+                        <p class="mb-4 text-gray-300 text-sm text-center">Género Musical</p>
+                        <button
+                            class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-medium text-white transition-colors">
+                            Seguir
+                        </button>
+                    </div>
+
+                    <!-- Más artistas placeholder -->
+                    <div
+                        class="hover:inset-shadow-sm flex flex-col bg-darker opacity-50 hover:shadow-lg p-6 rounded-md min-w-64 h-72 transition-all profile-gradient">
+                        <div class="flex justify-center items-center bg-gray-700 mx-auto mb-4 rounded-full w-24 h-24">
+                            <i data-lucide="plus" class="w-8 h-8 text-gray-400"></i>
+                        </div>
+                        <h3 class="mb-2 font-bold text-light text-lg text-center">Descubre más</h3>
+                        <p class="text-gray-300 text-sm text-center">Próximamente</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="flex flex-row items-center shadow-lg p-8 h-20">
+        <div class="justify-start grow">
+            <a href="./dashboard.html" class="font-bold text-light text-md">
+                MardelMusic © 2024
+            </a>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+    <script type="module">
+        import authHandler from "/src/handlers/auth.handler.js";
+        import LayoutHandler from "/src/handlers/layout-handler.js";
+        import NotificationHandler from "/src/handlers/notification.handler.js";
+        import AuthGuard from "/src/utils/auth.guard.js";
+
+        const layoutHandler = new LayoutHandler();
+        const notificationHandler = new NotificationHandler();
+
+        authHandler.subscribe(AuthGuard);
+        authHandler.subscribe(layoutHandler.setupLayout);
+        authHandler.subscribe(() => {
+            setTimeout(() => notificationHandler.init(), 100)
+        });
+
+        const logoutBtn = document.getElementById('logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', async () => {
+                await authHandler.logout();
+            });
+        }
+
+        await authHandler.getUserProfile();
+    </script>
+</body>
+
+</html>
