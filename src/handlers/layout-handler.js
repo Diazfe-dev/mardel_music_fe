@@ -1,11 +1,12 @@
 import authHandler from "./auth.handler.js";
-import {dropDownMenuItems} from "../constants/index.js";
+import { dropDownMenuItems } from "../constants/index.js";
 
 class LayoutHandler {
     constructor() {
     }
 
     setupLayout = (user) => {
+        console.log('Setting up layout for user:', user);
         this.setupProfileAvatar(user);
         this.setupDropdownMenu(user);
     }
@@ -16,25 +17,20 @@ class LayoutHandler {
 
         if (!profileBtn) return;
 
-        // Limpiar el contenido anterior para evitar duplicados
         profileBtn.innerHTML = '';
 
-        // Crear el elemento según si tiene imagen o no
-        if (!user.profileImageUrl && !user.profile_picture) {
-            // Mostrar placeholder con iniciales
+        if (!user.profileImageUrl && !user.profile_picture && !user.profile) {
             const profileImg = document.createElement('span');
             profileImg.className = "text-lg font-bold text-white text-center";
             profileImg.textContent = user.name.substring(0, 1).toUpperCase() + user.lastName.substring(0, 1).toUpperCase();
             profileBtn.appendChild(profileImg);
         } else {
-            // Mostrar imagen del usuario
             const profileImg = document.createElement('img');
-            profileImg.src = user.profileImageUrl || user.profile_picture;
+            profileImg.src = user.profile ? user.profile.profile_image_url : user.profile_picture;
             profileImg.className = "w-full h-full object-cover rounded-full";
             profileBtn.appendChild(profileImg);
         }
 
-        // Solo agregar el event listener si no existe ya
         if (!profileBtn.hasEventListener) {
             profileBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -51,7 +47,6 @@ class LayoutHandler {
                 }
             });
 
-            // Marcar que ya tiene event listeners
             profileBtn.hasEventListener = true;
         }
     }
@@ -60,7 +55,6 @@ class LayoutHandler {
         const profileDropdown = document.getElementById('profile-dropdown');
 
         if (!profileDropdown) return;
-        // Limpiar el contenido anterior para evitar duplicados
         profileDropdown.innerHTML = '';
 
         dropDownMenuItems.forEach((item) => {
@@ -81,7 +75,6 @@ class LayoutHandler {
             profileDropdown.appendChild(li);
         });
 
-        // Agregar botón de logout
         const li = document.createElement('li');
         li.id = "logout-btn";
         li.className = "py-4 px-2 hover:bg-[#242424] text-sm font-bold text-white transition-all cursor-pointer";
