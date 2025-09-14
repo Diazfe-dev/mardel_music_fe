@@ -51,7 +51,6 @@ class ProfileHandler {
                 this.user_avatar_img.src = this.currentUser.profile_picture;
                 this.user_avatar_img.style.display = 'block';
             } else {
-                console.log("entro aca en el else")
                 this.showPlaceholder();
             }
         }
@@ -62,7 +61,7 @@ class ProfileHandler {
             this.user_avatar_img.style.display = 'none';
 
             const initials = this.formatedUserName.split(' ')
-                .map(word => word.charAt(0))
+                .map(word => word.charAt(0).toLocaleUpperCase())
                 .join('');
 
             let placeholder = document.getElementById('avatar-placeholder');

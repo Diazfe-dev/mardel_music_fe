@@ -1,5 +1,5 @@
-const AuthGuard = (user) =>{
-    if(!user){
+const AuthGuard = (user) => {
+    if (!user) {
         window.location.href = '/index.html';
     }
 }

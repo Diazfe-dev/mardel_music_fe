@@ -6,11 +6,11 @@ class UserService {
     }
 
     async updateProfileImage(formData) {
-
         return await httpAdapter.put('/user/profile-image',
             formData,
-            {headers: {"Content-Type": "multipart/form-data"}}
-    );
+            {
+                headers: { "Content-Type": "multipart/form-data" }
+            });
     }
 }
 

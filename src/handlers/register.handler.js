@@ -55,7 +55,7 @@ class RegisterHandler {
             if (result.success) {
                 this.showSuccess('Registro exitoso. Redirigiendo...');
                 setTimeout(() => {
-                    window.location.href = '/dashboard.html';
+                    window.location.href = '/pages/dashboard.html';
                 }, 1500);
             } else {
                 this.showError(result.error.message);

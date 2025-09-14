@@ -78,7 +78,6 @@ class LayoutHandler {
                 profileDropdown.classList.add('hidden');
                 window.location.href = item.href;
             });
-
             profileDropdown.appendChild(li);
         });
 

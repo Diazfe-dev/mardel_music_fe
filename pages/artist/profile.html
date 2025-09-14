@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crear Perfil de Artista - MardelMusic</title>
+</head>
+
+<body class="flex flex-col bg-darker md:w-full h-screen md:overflow-hidden lg:overflow-auto">
+    <nav class="flex flex-row items-center bg-transparent p-8 h-20">
+        <div class="justify-start grow">
+            <a href="../dashboard.html" class="font-bold text-light text-2xl">
+                MardelMusic
+            </a>
+        </div>
+        <div class="relative flex justify-end items-center gap-4 grow-1">
+            <div class="relative flex justify-center items-center bg-dark shadow-md rounded-full w-8 h-8">
+                <button id="notification-bell"
+                    class="flex justify-center items-center bg-darker opacity-50 hover:opacity-100 backdrop-blur-2xl rounded-full w-8 h-8 text-[#fefefe] transition cursor-pointer">
+                    <i data-lucide="bell"></i>
+                </button>
+                <div id="notification-badge"
+                    class="hidden -top-1 -right-1 absolute flex justify-center items-center bg-[#2B7FFFFF] px-1 rounded-full min-w-[20px] h-5 font-bold text-white text-xs">
+                </div>
+                <ul id="notification-dropdown"
+                    class="hidden top-0 right-0 z-50 absolute flex flex-col bg-white shadow-xl mt-12 border border-gray-200 rounded-lg w-80 max-h-96 overflow-hidden text-black">
+                </ul>
+            </div>
+            <div class="relative">
+                <div class="flex justify-center items-center bg-dark shadow-md rounded-full w-12 h-12">
+                    <button id="profile-img"
+                        class="flex justify-center items-center bg-darker backdrop:blur-2xl rounded-full w-10 h-10 cursor-pointer">
+                    </button>
+                </div>
+                <ul id="profile-dropdown"
+                    class="hidden top-0 right-0 z-50 absolute flex flex-col gap-2 bg-dark shadow-lg mt-12 rounded-lg md:w-50 md:h-auto overflow-hidden text-black">
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="bg-darker p-4 w-full h-full">
+        <div class="flex flex-col mx-auto rounded-lg w-full overflow-auto">
+
+            <div class="flex flex-row gap-12 shadow-lg p-12 profile-gradient">
+                <div class="self-center h-full">
+                    <h1 class="opacity-80 drop-shadow-[#242424] drop-shadow-xl font-bold text-light text-4xl">
+                        Crear perfil de Artista
+                    </h1>
+                </div>
+            </div>
+
+            <div class="flex flex-row gap-8 shadow-lg p-12 profile-gradient">
+                <div class="flex flex-col gap-4">
+                    <span class="opacity-80 drop-shadow-[#242424] drop-shadow-xl font-bold text-light text-lg">Foto de
+                        perfil</span>
+                    <!-- Foto de perfil del artista -->
+                    <div class="relative w-80 h-80">
+                        <img id="profile-image" src="" alt="Vista previa de imagen"
+                            class="hidden bg-darker shadow-xl rounded-md w-full h-full object-cover overflow-hidden" />
+                        <div id="image-placeholder"
+                            class="flex justify-center items-center bg-darker shadow-xl border-2 border-gray-600 border-dashed rounded-md w-full h-full overflow-hidden">
+                            <div class="text-center">
+                                <i data-lucide="image" class="mx-auto mb-2 w-12 h-12 text-gray-400"></i>
+                                <p class="text-gray-400 text-sm">Selecciona una imagen</p>
+                            </div>
+                        </div>
+                        <input id="image-input" type="file" accept="image/*" class="hidden" />
+                        <button id="select-image-btn" type="button"
+                            class="absolute inset-0 bg-transparent rounded-md w-full h-full transition-all cursor-pointer">
+                        </button>
+                        <button id="remove-image-btn" type="button"
+                            class="hidden top-2 right-2 absolute flex justify-center items-center bg-darker opacity-60 hover:opacity-90 rounded-full w-8 h-8 text-white transition-all cursor-pointer">
+                            <i data-lucide="x" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4 w-full">
+                    <span class="opacity-80 drop-shadow-[#242424] drop-shadow-xl font-bold text-light text-lg">Datos del
+                        artista</span>
+                    <form>
+                        <div class="flex flex-row mb-2 w-full">
+                            <div class="flex flex-col gap-2 w-full">
+                                <label>Nombre de artista</label>
+                                <input type="text" id="artist-name" placeholder="Nombre de artista"
+                                    class="bg-darker p-2 focus:border-blue-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full text-light transition-all" />
+                            </div>
+                        </div>
+                        <div class="flex flex-row gap-2 mb-2 w-full">
+                            <div class="flex flex-col gap-2 w-full">
+                                <label for="artist-location">Locación</label>
+                                <input type="text" id="artist-location" placeholder="Ciudad, País"
+                                    class="bg-darker p-2 focus:border-blue-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full text-light transition-all" />
+                            </div>
+                        </div>
+                        <div class="flex flex-row gap-2 mb-2 w-full">
+                            <div class="flex flex-col gap-2 w-full">
+                                <label>Bio</label>
+                                <textarea type="text" id="artist-bio" cols="20"
+                                    placeholder="Breve descripcion del artista"
+                                    class="bg-darker p-2 focus:border-blue-500 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full h-30 text-light resize-none"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Selector de géneros -->
+                        <div id="genre-selector-container" class="flex flex-col gap-2 mt-6 w-full">
+
+                        </div>
+
+
+                        <div class="flex flex-col gap-2 mt-2 w-full">
+                            <span
+                                class="opacity-80 drop-shadow-[#242424] drop-shadow-xl mb-2 font-bold text-light text-lg">
+                                Redes Sociales
+                            </span>
+                            <div id="social-media-container" class="space-y-6">
+                                <!-- Las secciones se crearán dinámicamente aquí -->
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="flex flex-row justify-end gap-4 mt-8 mb-8">
+                        <button class="btn secondary" id="cancel-btn">Cancelar</button>
+                        <button class="btn primary" id="submit-btn">Crear perfil</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script type="module" src="/src/main.js"></script>
+    <script type="module">
+        import authHandler from "/src/handlers/auth.handler.js";
+        import LayoutHandler from "/src/handlers/layout-handler.js";
+        import NotificationHandler from "/src/handlers/notification.handler.js";
+        import ArtistProfileHandler from "/src/handlers/artist-profile.handler.js";
+        import AuthGuard from "/src/utils/auth.guard.js";
+
+        const layoutHandler = new LayoutHandler();
+        const notificationHandler = new NotificationHandler();
+        const artistProfileHandler = new ArtistProfileHandler();
+
+        authHandler.subscribe(AuthGuard);
+        authHandler.subscribe(async (user) => await layoutHandler.setupLayout(user));
+        authHandler.subscribe(async (user) => await notificationHandler.init(user));
+        authHandler.subscribe(async (user) => await artistProfileHandler.init(user));
+        authHandler.getUserProfile();
+        window.refreshIcons();
+    </script>
+</body>
+
+</html>

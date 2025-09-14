@@ -27,7 +27,6 @@ axiosInstance.interceptors.response.use(
     async (error) => {
         if (error.response) {
             if (error.response.status === 500) {
-
                 showNotification("Hubo un error, comunicate con un administrador", "error");
             }
 
