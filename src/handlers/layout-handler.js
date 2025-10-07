@@ -6,7 +6,6 @@ class LayoutHandler {
     }
 
     setupLayout = (user) => {
-        console.log('Setting up layout for user:', user);
         this.setupProfileAvatar(user);
         this.setupDropdownMenu(user);
     }

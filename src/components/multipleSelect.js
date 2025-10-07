@@ -44,6 +44,13 @@ export default class MultipleSelect {
         return this.selectedOptions;
     }
 
+    setSelectedOptions(options) {
+        if (Array.isArray(options)) {
+            this.selectedOptions = options.filter(opt => this.optionsList.includes(opt));
+            this.renderSelectedOptions();
+        }
+    }
+
     showSuggestions() {
         this.suggestions.classList.remove('hidden');
         this.renderSuggestions(this.input.value);

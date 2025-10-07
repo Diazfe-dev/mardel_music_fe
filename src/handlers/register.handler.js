@@ -36,7 +36,6 @@ class RegisterHandler {
         if (this.isLoading) return;
 
         const userData = this.getFormData();
-        console.log(userData);
         if (!this.validateForm(userData)) {
             return;
         }

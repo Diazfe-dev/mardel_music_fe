@@ -1,6 +1,6 @@
 import axios from 'axios';
-import {BASE_API_URL, validUnauthorizedRoutes} from '../constants/index.js'
-import {showNotification} from "../utils/toaster.js";
+import { BASE_API_URL, validUnauthorizedRoutes } from '../constants/index.js'
+import { showNotification } from "../utils/toaster.js";
 import AuthGuard from "../utils/auth.guard.js";
 
 const axiosInstance = axios.create({
@@ -32,8 +32,8 @@ axiosInstance.interceptors.response.use(
 
             if (error.response.status === 401) {
                 const url = error.config.url
-                const isValidUnauthorizedRoute = validUnauthorizedRoutes.some(path => path === url )
-                if(!isValidUnauthorizedRoute){
+                const isValidUnauthorizedRoute = validUnauthorizedRoutes.some(path => path === url)
+                if (!isValidUnauthorizedRoute) {
                     showNotification("No autorizado, por favor inicia sesión nuevamente", "error");
                     AuthGuard(null);
                 }

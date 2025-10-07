@@ -10,5 +10,19 @@ class ProfileService {
                 }
             });
     }
+
+    async getArtistProfile() {
+        return await httpAdapter.get('/artist/profile');
+    }
+
+    async updateArtistProfile(profileData) {
+        return await httpAdapter.put('/artist/profile',
+            profileData,
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            });
+    }
 }
 export default new ProfileService();

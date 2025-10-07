@@ -43,7 +43,6 @@ class HttpAdapter {
     async delete(url, config = {}) {
         try {
             const {data: {data}, status, statusText} = await axiosInstance.delete(url, config);
-            console.log(data);
             return {
                 success: true,
                 data: data,

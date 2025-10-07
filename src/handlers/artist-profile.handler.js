@@ -9,16 +9,131 @@ import MultipleSelect from '../components/MultipleSelect.js';
 class ArtistProfileCreateHandler {
     constructor() {
         this.socialMediaData = [];
+        this.isEditMode = false;
+        this.existingProfile = null;
     }
 
     async init(user) {
         this.user = user;
+        
+        await this.checkExistingProfile();
+        
         this.setupImageUpload();
         await this.loadSocialMediaTypes();
         this.createSocialMediaSections();
         this.setupSocialMediaInputEvents();
         this.setupCallToActionButtons();
         await this.setupMultipleSelect();
+        
+        if (this.isEditMode) {
+            this.updateUIForEditMode();
+            this.loadExistingData();
+        }
+    }
+
+    async checkExistingProfile() {
+        try {
+            const response = await profileService.getArtistProfile();
+            if (response.success && response.data) {
+                this.isEditMode = true;
+                this.existingProfile = response.data;
+            }
+        } catch (error) {
+            this.isEditMode = false;
+        }
+    }
+
+    updateUIForEditMode() {
+        const titleElement = document.querySelector('h1');
+        if (titleElement) {
+            titleElement.textContent = 'Editar perfil de Artista';
+        }
+
+        const submitButton = document.getElementById('submit-btn');
+        if (submitButton) {
+            submitButton.textContent = 'Actualizar perfil';
+        }
+
+        this.addVerificationStatus();
+    }
+
+    addVerificationStatus() {
+        const titleContainer = document.querySelector('.profile-gradient .self-center');
+        if (titleContainer && this.existingProfile) {
+            const statusElement = document.createElement('p');
+            statusElement.className = 'opacity-70 drop-shadow-[#242424] drop-shadow-xl text-lg mt-2 chip';
+            
+            if (this.existingProfile.verified) {
+                statusElement.innerHTML = 'Perfil verificado';
+            } else {
+                statusElement.innerHTML = 'No verificado';
+            }
+            
+            titleContainer.appendChild(statusElement);
+        }
+    }
+
+    loadExistingData() {
+        if (!this.existingProfile) return;
+
+        const artistNameInput = document.getElementById('artist-name');
+        const artistLocationInput = document.getElementById('artist-location');
+        const artistBioInput = document.getElementById('artist-bio');
+
+        if (artistNameInput && this.existingProfile.name) {
+            artistNameInput.value = this.existingProfile.name;
+        }
+        if (artistLocationInput && this.existingProfile.location) {
+            artistLocationInput.value = this.existingProfile.location;
+        }
+        if (artistBioInput && this.existingProfile.bio) {
+            artistBioInput.value = this.existingProfile.bio;
+        }
+
+        if (this.existingProfile.profileImageUrl) {
+            this.loadExistingImage(this.existingProfile.profileImageUrl);
+        }
+
+        if (this.existingProfile.genres && this.existingProfile.genres.length > 0) {
+            this.loadExistingGenres(this.existingProfile.genres);
+        }
+
+        if (this.existingProfile.social_media && this.existingProfile.social_media.length > 0) {
+            this.loadExistingSocialMedia(this.existingProfile.social_media);
+        }
+    }
+
+    loadExistingImage(imageUrl) {
+        
+        if (this.profileImage && this.imagePlaceholder && this.removeImageBtn) {
+            this.profileImage.src = imageUrl;
+            this.profileImage.classList.remove('hidden');
+            this.imagePlaceholder.classList.add('hidden');
+            this.removeImageBtn.classList.remove('hidden');
+            this.originalImageUrl = imageUrl;
+        } else {
+            console.error('❌ No se pudieron encontrar los elementos DOM para la imagen');
+        }
+    }
+
+    loadExistingGenres(genres) {
+        if (this.genreMultipleSelect && genres.length > 0) {
+            const genreNames = genres.map(genre => 
+                typeof genre === 'string' ? genre : genre.name
+            );
+            this.genreMultipleSelect.setSelectedOptions(genreNames);
+        }
+    }
+
+    loadExistingSocialMedia(socialMediaData) {
+        socialMediaData.forEach(social => {
+            const input = document.querySelector(`[data-social-media-id="${social.social_media_id}"]`);
+            if (input) {
+                input.value = social.url;
+                input.dataset.originalValue = social.url;
+                this.toggleClearButton(input, true);
+            }
+        });
     }
 
     async loadGenres() {
@@ -53,7 +168,6 @@ class ArtistProfileCreateHandler {
                 }
             });
         } catch (error) {
-            console.error('❌ Error loading social media types:', error);
             this.showErrorMessage('Error al cargar los tipos de redes sociales');
         }
     }
@@ -61,7 +175,6 @@ class ArtistProfileCreateHandler {
     createSocialMediaSections() {
         const container = document.getElementById('social-media-container');
         if (!container || !this.socialMediaData.length) {
-            console.warn('⚠️ Container not found or no social media data');
             return;
         }
 
@@ -428,7 +541,119 @@ class ArtistProfileCreateHandler {
     }
 
     handleSubmit() {
-        this.showPreviewModal();
+        if (this.isEditMode) {
+            this.showUpdatePreviewModal();
+        } else {
+            this.showPreviewModal();
+        }
+    }
+
+    showUpdatePreviewModal() {
+        const formData = this.getFormData();
+        const errors = this.validateFormData(formData);
+
+        if (errors.length > 0) {
+            this.showErrorMessage(errors.join('\n'));
+            return;
+        }
+
+        this.createUpdatePreviewModal(formData);
+    }
+
+    createUpdatePreviewModal(formData) {
+        const socialMediaList = Object.values(formData.socialMedia);
+        const hasImage = formData.image || this.existingProfile?.profile_image_url;
+        const imageUrl = formData.image ? URL.createObjectURL(formData.image) : this.existingProfile?.profile_image_url;
+        
+        const modalContent = document.createElement('div');
+        modalContent.innerHTML = `
+            <div class="w-full">
+                <div><h2 class="text-2xl font-bold mb-4 text-light">Revisa los cambios antes de actualizar</h2></div>
+                <div class="flex flex-row items-center justify-center">
+                    ${hasImage ? `<img src="${imageUrl}" alt="Imagen de perfil" class="w-32 h-32 object-cover rounded-full mb-4 mx-auto shadow-lg">`
+                        : `<div class="w-32 h-32 flex items-center justify-center bg-gray-600 rounded-full mb-4 mx-auto shadow-lg">
+                            <span class="text-4xl font-bold text-white">${formData.artistName.substring(0, 1).toUpperCase()}</span>
+                           </div>`
+                    }
+                    <div class="ml-6 flex-1">
+                        <h3 class="text-xl font-bold mb-2">${formData.artistName}</h3>
+                        <p class="mb-2"><strong>Biografía:</strong> ${formData.bio}</p>
+                        ${formData.location ? `<p class="mb-2"><strong>Ubicación:</strong> ${formData.location}</p>` : ''}
+                        ${formData.genres ? `<p class="mb-2"><strong>Géneros:</strong> ${formData.genres}</p>` : ''}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        const cancelButton = document.createElement("button");
+        cancelButton.innerHTML = `Cancelar`;
+        cancelButton.className = 'btn danger';
+        cancelButton.onclick = () => {
+            if (formData.image) URL.revokeObjectURL(imageUrl);
+            updateModal.close();
+        };
+
+        const editButton = document.createElement("button");
+        editButton.innerHTML = `Editar`;
+        editButton.className = "btn tertiary mr-2";
+        editButton.onclick = () => {
+            if (formData.image) URL.revokeObjectURL(imageUrl);
+            updateModal.close();
+        }
+
+        const confirmButton = document.createElement("button");
+        confirmButton.innerHTML = `Actualizar`;
+        confirmButton.className = "btn primary";
+        confirmButton.onclick = () => {
+            if (formData.image) URL.revokeObjectURL(imageUrl);
+            updateModal.close();
+            this.updateProfile(formData);
+        };
+
+        const updateModal = createDialog({
+            modalId: 'update-preview-modal',
+            title: 'Vista Previa de Actualización',
+            bodyElement: modalContent,
+            buttons: [cancelButton, editButton, confirmButton]
+        });
+
+        updateModal.showModal();
+    }
+
+    async updateProfile(formData) {
+        try {
+            this.setSubmitLoading(true);
+            const submitData = new FormData();
+
+            submitData.append('name', formData.artistName);
+            submitData.append('bio', formData.bio);
+
+            if (formData.location) submitData.append('location', formData.location);
+            if (formData.genres) submitData.append('genres', formData.genres);
+            if (formData.website) submitData.append('website', formData.website);
+            if (formData.image) submitData.append('profile_image', formData.image);
+
+            const socialMediaArray = Object.values(formData.socialMedia);
+            if (socialMediaArray.length > 0) {
+                submitData.append('social_media', JSON.stringify(socialMediaArray));
+            }
+
+            const response = await profileService.updateArtistProfile(submitData);
+
+            if (response.success) {
+                this.showSuccessMessage('¡Perfil de artista actualizado exitosamente!');
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1500);
+            } else {
+                throw new Error(response.message || 'Error al actualizar el perfil');
+            }
+
+        } catch (error) {
+            this.showErrorMessage(error.message || 'Error al actualizar el perfil. Intenta nuevamente.');
+        } finally {
+            this.setSubmitLoading(false);
+        }
     }
 
     getFormData() {
@@ -560,7 +785,12 @@ class ArtistProfileCreateHandler {
 
             const response = await profileService.createArtistProfile(submitData);
 
-            if (response.success) { this.showSuccessMessage('¡Perfil de artista creado exitosamente!'); }
+            if (response.success) { 
+                this.showSuccessMessage('¡Perfil de artista creado exitosamente!');
+                setTimeout(() => {
+                    window.location.href = '/pages/dashboard.html';
+                }, 2000);
+             }
             else { throw new Error(response.message || 'Error al crear el perfil'); }
 
         } catch (error) {
@@ -576,16 +806,18 @@ class ArtistProfileCreateHandler {
 
         if (isLoading) {
             submitButton.disabled = true;
+            const loadingText = this.isEditMode ? 'Actualizando Perfil...' : 'Creando Perfil...';
             submitButton.innerHTML = `
-                <svg class="animate-spin w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24">
+                <svg class="animate-spin w-5 h-5 mr-2 inline" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                Creando Perfil...
+                ${loadingText}
             `;
         } else {
             submitButton.disabled = false;
-            submitButton.innerHTML = 'Crear Perfil';
+            const buttonText = this.isEditMode ? 'Actualizar perfil' : 'Crear perfil';
+            submitButton.innerHTML = buttonText;
         }
     }
 

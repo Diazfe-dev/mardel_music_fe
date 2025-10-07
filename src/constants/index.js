@@ -1,10 +1,10 @@
 export const BASE_API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
 
 export const validUnauthorizedRoutes = [
-    '/pages/auth/login',
-    '/pages/auth/register',
-    '/pages/auth/forgot-password',
-    '/pages/auth/reset-password'
+    '/auth/login',
+    '/auth/register',
+    '/auth/forgot-password',
+    '/auth/reset-password'
 ]
 
 export const dropDownMenuItems = [
@@ -26,7 +26,7 @@ export const dropDownMenuItems = [
     {
         text: 'Mis eventos',
         href: '/pages/artist/events.html',
-        requiredRoles: 'artist|admin'
+        requiredRoles: 'user|artist|admin'
     },
     {
         text: 'Configuracion',

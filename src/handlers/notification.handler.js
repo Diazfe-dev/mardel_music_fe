@@ -179,8 +179,6 @@ class NotificationHandler {
     }
 
     handleNotificationClick(notification) {
-        console.log('Notification clicked:', notification);
-
         // Marcar como leída
         notification.read = true;
 
